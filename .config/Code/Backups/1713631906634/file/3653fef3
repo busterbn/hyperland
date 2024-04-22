@@ -1,0 +1,3 @@
+file:///home/bn/.config/code-flags.conf {"mtime":1713648547454,"ctime":1713643868612,"size":60,"etag":"3c9r51p4g1t","orphaned":false,"typeId":""}
+--enable-features=UseOzonePlatform
+--ozone-platform=wayland

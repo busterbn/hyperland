@@ -1,0 +1,5 @@
+2024-04-20 17:09:26.824 [info] update#setState idle
+2024-04-20 17:09:27.151 [error] Unable to resolve your shell environment: Unexpected exit code from spawned shell (code null, signal SIGTRAP)
+2024-04-20 17:09:27.330 [error] ptyHost was unable to resolve shell environment Unable to resolve your shell environment: Unexpected exit code from spawned shell (code null, signal SIGTRAP)
+2024-04-20 17:09:27.336 [error] resolving shell environment failed Unable to resolve your shell environment: Unexpected exit code from spawned shell (code null, signal SIGTRAP)
+2024-04-20 17:09:43.097 [info] Extension host with pid 4053 exited with code: 0, signal: unknown.

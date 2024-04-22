@@ -1,0 +1,3 @@
+2024-04-21 16:22:02.375 [info] Initial editor state {"filesToOpenOrCreate":[{"fileUri":{"$mid":1,"path":"/home/bn/Downloads/widevine-installer/conf/README","scheme":"file"},"type":1,"exists":true,"options":{}}],"filesToDiff":[],"filesToMerge":[]}
+2024-04-21 16:22:02.516 [info] Started local extension host with pid 4413.
+2024-04-21 16:22:05.322 [info] [perf] Render performance baseline is 33ms
