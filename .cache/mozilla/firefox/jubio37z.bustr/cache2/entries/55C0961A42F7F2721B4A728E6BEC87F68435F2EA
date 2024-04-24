@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="da" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# ">
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="The HISTORY® Channel giver et underholdende, autentisk og spændende indblik i en inspirerende verden, der er meget mere end bare historie." />
+<link rel="canonical" href="https://www.historytv.dk/da" />
+<link rel="shortlink" href="https://www.historytv.dk/da" />
+<meta property="og:site_name" content="HISTORY TV Denmark" />
+<meta property="og:url" content="https://www.historytv.dk/da/history-da-homepage" />
+<meta property="og:title" content="The HISTORY Channel Denmark | HISTORY TV Denmark" />
+<meta property="og:description" content="The HISTORY® Channel giver et underholdende, autentisk og spændende indblik i en inspirerende verden, der er meget mere end bare historie." />
+<meta property="og:image:url" content="https://aetnmultisite.s3.eu-central-1.amazonaws.com/s3fs-public/2023-11/history-emea-thumbnail-denmark.jpg?VersionId=xeiUoAHNb9r_FwNf0xhL4ny6mabtSw2X" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="The HISTORY® Channel giver et underholdende, autentisk og spændende indblik i en inspirerende verden, der er meget mere end bare historie." />
+<meta name="twitter:title" content="The HISTORY Channel Denmark | HISTORY TV Denmark" />
+<meta name="twitter:url" content="https://www.historytv.dk/da/history-da-homepage" />
+<meta name="twitter:image" content="https://aetnmultisite.s3.eu-central-1.amazonaws.com/s3fs-public/2023-11/history-emea-thumbnail-denmark.jpg?VersionId=xeiUoAHNb9r_FwNf0xhL4ny6mabtSw2X" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<link rel="icon" href="https://aetnmultisite.s3.eu-central-1.amazonaws.com/favicon%20%281%29.ico" type="image/vnd.microsoft.icon" />
+<link rel="alternate" hreflang="da" href="https://www.historytv.dk/da" />
+
+    <title>Homepage | HISTORY TV Denmark</title>
+    <link rel="stylesheet" media="all" href="/core/modules/system/css/components/ajax-progress.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/align.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/autocomplete-loading.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/fieldgroup.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/container-inline.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/clearfix.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/details.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/hidden.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/item-list.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/js.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/nowrap.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/position-container.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/progress.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/reset-appearance.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/resize.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/sticky-header.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/system-status-counter.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/system-status-report-counters.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/system-status-report-general-info.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/tabledrag.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/tablesort.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/core/modules/system/css/components/tree-child.module.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/modules/contrib/paragraphs/css/paragraphs.unpublished.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/node.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/themes/custom/emea/css/style.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/colors/messages/messages-light.css?sbzsjy" />
+<link rel="stylesheet" media="all" href="/themes/contrib/bootstrap_barrio/css/components/navigation.css?sbzsjy" />
+
+    
+  </head>
+  <body class="layout-no-sidebars page-node-368 path-frontpage node--type-homepage">
+    <a href="#main-content" class="visually-hidden-focusable">
+      Skip to main content
+    </a>
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    <div id="page-wrapper">
+  <div id="page" class="flex-page">
+    <header id="l-site--header" class="header l-header--sticky" role="banner" aria-label="Site header">
+                      <nav class="navbar navbar-dark bg-transparent navbar-expand-lg" id="navbar-main">
+                      <div class ="c-header--branding">
+                <div id="block-logohistory" class="block block-block-content block-block-content9cdb25f8-37f4-4eb0-9dd3-219d0b21bbe1">
+  
+    
+      <div class="content">
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><a href="/" alt="Home" target="_self"><img src="/themes/custom/emea/images/logos/history-logo.svg" class="l-logo--history" alt="The HISTORY Channel"></a></div>
+      
+    </div>
+  </div>
+
+
+            </div>
+
+                          <button class="navbar-toggler collapsed" type="button" id="c-button--mobile-nav" data-bs-toggle="collapse" data-bs-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation"><img class="c-nav-icon" src="/themes/custom/emea/images/icons/menu-light.svg" alt="Menu"></button>
+              
+              <div class="collapse navbar-collapse justify-content-end" id="CollapsingNavbar">
+                                  <nav role="navigation" aria-labelledby="block-mainmenuhisdk-menu" id="block-mainmenuhisdk" class="block block-menu navigation menu--main-menu-his-dk">
+            
+  <h2 class="visually-hidden" id="block-mainmenuhisdk-menu">Main Menu HIS DK</h2>
+  
+
+        
+              <ul class="clearfix nav">
+                    <li class="nav-item">
+                <a href="/da/general/om-os" title="The HISTORY Channel - Om os" class="nav-link nav-link--da-general-om-os">Om os</a>
+              </li>
+                <li class="nav-item">
+                <a href="https://www.meetv.dk/tvguide/kanal/MEETV_HISTORYCHANNEL_DK" class="nav-link nav-link-https--wwwmeetvdk-tvguide-kanal-meetv-historychannel-dk">TV-Guide</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+
+                                              </div>
+            
+
+                              </nav>
+          </header>
+    
+    
+    <div id="main-wrapper" class="l-content--section brand-dark flex-grow layout-main-wrapper clearfix">
+               
+          <div id="main" class="l-full-width--container">
+                  
+          <div class="clearfix">
+            <main class="main-content col" id="content" role="main">
+              <section class="section">
+                <a id="main-content" tabindex="-1"></a>
+                  <div id="block-emea-content" class="block block-system block-system-main-block">
+  
+    
+      <div class="content">
+      
+
+
+<link rel="stylesheet" href="/libraries/splidejs--splide/dist/css/splide.min.css">
+
+<script src="/libraries/splidejs--splide/dist/js/splide.min.js"></script>
+
+<script type="text/plain" class="optanon-category-C0004">
+Drupal.behaviors.venobox = {
+    attach: function (context, settings) {
+      new VenoBox({
+          selector: '.my-video-links',
+      });
+    }
+  };
+Drupal.attachBehaviors();
+</script>
+
+<link rel="stylesheet" href="/libraries/venobox/dist/venobox.min.css" />
+
+<div class="l-homepage l-brand--history">
+
+  <div id="image-slider" class="splide" data-splide='{"type":"loop","perPage":1}'>
+
+    <div class="splide__arrows">
+
+      <button class="splide__arrow splide__arrow--prev">
+        <img src="/themes/custom/emea/images/icons/left-arrow-medium.svg" class="splide--slider--previous-arrow">
+      </button>
+      <button class="splide__arrow splide__arrow--next">
+        <img src="/themes/custom/emea/images/icons/right-arrow-medium.svg" class="splide--slider--previous-arrow">
+      </button>
+
+    </div>
+
+    <div class="splide__track">
+
+      <ul class="splide__list">
+
+          
+            
+<li class="splide__slide">
+
+  
+    
+      <div class="c-splide--text-container">
+
+        <h1>Royal Autopsy | Sæson 2</h1>
+
+                  <h2>Søndag fra den 28. april kl. 21:45</h2>
+        
+                  <p>Royal Autopsy vender tilbage med professor Alice Roberts, der undersøger dødsårsagerne for fire af Storbritanniens mest berømte monarker, kong George IV, dronning Mary I, Kong Henry IV og dronning Anne.</p>
+        
+      </div>
+
+    
+
+      
+        <img src="https://aetnmultisite.s3.eu-central-1.amazonaws.com/s3fs-public/styles/1920x1080/public/2024-04/royal-autopsy-web_2.jpg?VersionId=6AOnrOsZJJdiCxQrPLVADL.2vrVYihJb&amp;itok=tmntMDrp">
+
+      
+  
+</li>
+<li class="splide__slide">
+
+  
+    
+      <div class="c-splide--text-container">
+
+        <h1>Lost U-Boats of WWII S1</h1>
+
+                  <h2>Tirsdage fra den 7. maj kl. 21.00</h2>
+        
+                  <p>Under Anden Verdenskrig plyndrede nazisterne alt, hvad de kunne få fat på. Skattejægeren Darrell Miklos mener, at nogle af disse stjålne rigdomme blev lastet om bord på særligt modificerede U-både, som nu ligger på bunden af det Caribiske Hav.</p>
+        
+      </div>
+
+    
+
+      
+        <img src="https://aetnmultisite.s3.eu-central-1.amazonaws.com/s3fs-public/styles/1920x1080/public/2024-04/lost-u-boats-ww2-web_0.jpg?VersionId=EHVp5Nrez63fvwWDp.Nbyb09jT0Kw3s_&amp;itok=e7E6GwXg">
+
+      
+  
+</li>
+<li class="splide__slide">
+
+  
+    
+      <div class="c-splide--text-container">
+
+        <h1>Secrets In The Sand</h1>
+
+                  <h2>Onsdage kl. 21.00</h2>
+        
+                  <p>Fra tabte antikke byer til mystiske geologiske formationer undersøger Secrets in the Sand usædvanlige fænomener, der engang var skjult i planetens ørkener, kun for endelig at blive afsløret.</p>
+        
+      </div>
+
+    
+
+      
+        <img src="https://aetnmultisite.s3.eu-central-1.amazonaws.com/s3fs-public/styles/1920x1080/public/2024-04/secrets-in-the-sand-web-2_2.jpg?VersionId=j.EJrkgHy__60WSdnwYWsLzRJxP0gZAc&amp;itok=TlL1vbNM">
+
+      
+  
+</li>
+<li class="splide__slide">
+
+  
+    
+      <div class="c-splide--text-container">
+
+        <h1>Forged In Fire | Sæson 10</h1>
+
+                  <h2>Tirsdage kl. 20:15</h2>
+        
+                  <p>Verdens bedste våbensmede vender tilbage for at konkurrere om at skabe alt fra vikingekampøkser til samuraisværd til indiske klo-dolk.</p>
+        
+      </div>
+
+    
+
+      
+        <img src="https://aetnmultisite.s3.eu-central-1.amazonaws.com/s3fs-public/styles/1920x1080/public/2024-03/forged-in-fire-s10-new3_0.jpg?VersionId=RE0.no4KDgi4s9lvzDeZRXvDjDDKo39K&amp;itok=tWjq8Yfo">
+
+      
+  
+</li>
+
+          
+      </ul>
+      
+    </div>
+
+  </div>
+
+  <div class="l-homepage--main">
+
+    
+      
+<div class="l-page--content-container l-page--content-spacing">
+
+  
+    <div class="c-content--header">
+
+      <h1>Find Os Her</h1>
+
+    </div>
+
+  
+  <div class="flex-wrap flex">
+
+    
+      <div class="col-25 c-where-to-watch">
+
+        
+          <a href="https://www.allente.dk/" target="_self" class="c-button--link">
+
+        
+          
+            <img alt="" src="https://aetnmultisite.s3.eu-central-1.amazonaws.com/s3fs-public/styles/750x550/public/brand-logos/allente-logo.png?VersionId=v_QGGrO0rCFHXMJC0RVXELLiCaYBMayW&amp;itok=VXi1hWZS" class="c-where-to-watch--image">
+
+          
+          <p>Kanal 43</p>
+
+        
+          </a>
+
+        
+      </div>
+
+    
+
+    
+      <div class="col-25 c-where-to-watch">
+
+        
+          <a href="https://www.waoo.dk/" target="_self" class="c-button--link">
+
+        
+          
+            <img alt="" src="https://aetnmultisite.s3.eu-central-1.amazonaws.com/s3fs-public/styles/750x550/public/brand-logos/waoo-logo.png?VersionId=zPmXMjZPcsuy9w6EO8vqSWUuPbB2muZW&amp;itok=nHCJm3FF" class="c-where-to-watch--image">
+
+          
+          <p>Waoo</p>
+
+        
+          </a>
+
+        
+      </div>
+
+    
+    
+      <div class="col-25 c-where-to-watch">
+
+        
+          <a href="https://www.yousee.dk/" target="_self" class="c-button--link">
+
+        
+          
+            <img alt="" src="https://aetnmultisite.s3.eu-central-1.amazonaws.com/s3fs-public/styles/750x550/public/brand-logos/yousee-logo.png?VersionId=BrFBWohedfmPHNO99r570pLD7YfL0RQj&amp;itok=6NcGd2LI" class="c-where-to-watch--image">
+
+          
+          <p>YouSee</p>
+
+        
+          </a>
+
+        
+      </div>
+
+    
+
+    
+      <div class="col-25 c-where-to-watch">
+
+        
+          <a href="https://www.telia.dk/" target="_self" class="c-button--link">
+
+        
+          
+            <img alt="" src="https://aetnmultisite.s3.eu-central-1.amazonaws.com/s3fs-public/styles/750x550/public/brand-logos/telia-logo.png?VersionId=HRSH.GgWYwOKMDD5fO74lZp.OQ1bkU1t&amp;itok=-UkcsvYS" class="c-where-to-watch--image">
+
+          
+          <p>Telia</p>
+
+        
+          </a>
+
+        
+      </div>
+
+    
+
+    
+      <div class="col-25 c-where-to-watch">
+
+        
+          <a href="http://www.nanoqmedia.gl/" target="_self" class="c-button--link">
+
+        
+          
+            <img alt="" src="https://aetnmultisite.s3.eu-central-1.amazonaws.com/s3fs-public/styles/750x550/public/brand-logos/nanoq-media.png?VersionId=Ocl9JYhqAp3_1rskMmaxWEr6P4Z3Y4HY&amp;itok=eGlro9Oo" class="c-where-to-watch--image">
+
+          
+          <p>Nanoq Media</p>
+
+        
+          </a>
+
+        
+      </div>
+
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+       
+
+     
+
+    
+    
+  </div>
+
+</div>
+
+
+
+  <div class="l-page--content-container l-page--content-spacing">
+
+    <div class="c-content--spacing">
+
+      
+        <div class="c-content--header">
+
+          <h1>Om os</h1>
+
+        </div>
+
+      
+      <p>Tag med på en fantastisk rejse, hvor den moderne verden møder de historiske rødder, og hvor originale mænd lever utrolige liv. The HISTORY<span lang="EN-GB">®</span> Channel&nbsp;giver et underholdende, autentisk og spændende indblik i en inspirerende verden, der er meget mere end bare historie. På søsterkanalen HISTORY2 kan du dykke ned i myter og konspirationsteorier, udforske de uudtømmelige rigdomme, som verdenshistorien byder på, og lade dig indhylle i skelsættende begivenheder fra fortid og nutid.<br><br>Begge kanaler sender døgnet rundt, og alle programmer har danske undertekster.<br><br>The HISTORY Channel er tilgængelig hos Canal Digital, YouSee, Boxer, Telia, Waoo og Nanoq Media.<br><br>HISTORY2 er tilgængelig hos Canal Digital, YouSee, Waoo og Stofa (i udvalgte områder af landet).<br><br>Kanalerne drives af A+E Networks UK, som er til stede i næsten 100 lande på tværs af Storbritannien, Skandinavien, Benelux, Øst- og Mellemeuropa, Afrika og Mellemøsten.</p>
+
+    </div>
+
+  </div>
+
+
+<div class="l-page--content-container l-page--content-spacing">
+
+  <div class="c-content--spacing">
+
+    
+      <div class="c-content--header">
+
+        <h1>Følg os</h1>
+
+      </div>
+
+    
+    <div class="c-social-links">
+
+      
+        <a href="https://www.facebook.com/HISTORYdanmark" target="_blank" rel="noreferrer"><img src="/themes/custom/emea/images/icons/social-links/facebook-colour.svg" alt="Follow on Facebook"></a>
+
+      
+      
+      
+      
+      
+
+      
+      
+    </div>
+
+  </div>
+
+</div>
+
+    
+  </div>
+
+</div>
+
+<script src="/libraries/venobox/dist/venobox.min.js"></script>
+    </div>
+  </div>
+<div data-drupal-messages-fallback class="hidden"></div>
+
+
+              </section>
+            </main>
+          </div>
+                  </div>
+          </div>
+
+    
+    <footer class="l-site--footer">
+                        <div class="brand-light">
+            <div class="l-footer--section l-site--footer-first clearfix">
+              <div class="flex-wrap flex-start">
+                <div class="col-50">
+                    <section class="l-footer--about region region-footer-about">
+    <nav role="navigation" aria-labelledby="block-aboutusdk-menu" id="block-aboutusdk" class="block block-menu navigation menu--about-us-dk">
+      
+  <h2 id="block-aboutusdk-menu">Om os</h2>
+  
+
+        
+              <ul class="clearfix nav">
+                    <li class="nav-item">
+                <a href="/da/node/27" class="nav-link nav-link--da-node-27" data-drupal-link-system-path="node/27">Betingelser</a>
+              </li>
+                <li class="nav-item">
+                <a href="/da/politik-om-beskyttelse-af-personlige-oplysninger" class="nav-link nav-link--da-politik-om-beskyttelse-af-personlige-oplysninger" data-drupal-link-system-path="node/24">Privatlivsnotifikation</a>
+              </li>
+                <li class="nav-item">
+                <a href="/da/node/26" class="nav-link nav-link--da-node-26" data-drupal-link-system-path="node/26">Politik for acceptabel brug</a>
+              </li>
+                <li class="nav-item">
+                <a href="https://www.aenetworks.tv/modern-slavery" class="nav-link nav-link-https--wwwaenetworkstv-modern-slavery">Modern Slavery Statements</a>
+              </li>
+        </ul>
+  
+
+
+  </nav>
+
+  </section>
+
+                </div>
+                <div class="col-50">
+                    <section class="region region-footer-social">
+    <div id="block-emea-followushistorydenmark" class="block block-block-content block-block-content73475fe3-3804-44bc-a768-ee6673607465">
+  
+    
+      <div class="content">
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><div class="c-footer--social">
+ <h2 class="c-footer--header">Følg os</h2>
+  <div class="c-footer--content">
+    <a href="https://www.facebook.com/HISTORYdanmark" target="_blank" alt="HISTORY Danmark - Facebook"><img src="/themes/custom/emea/images/icons/facebook.svg"></a>
+  </div>
+</div>
+
+<script defer type="text/javascript" src="https://api.pirsch.io/pirsch-extended.js"
+    id="pirschextendedjs"
+    data-code="LbpyRVgTqHaRL1PYaqZsa0mzxvWwwPRN"></script></div>
+      
+    </div>
+  </div>
+
+  </section>
+
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+                          <div class="brand-dark">
+            <div class="l-footer--section l-site--footer-bottom center-text">
+                <section class="region region-footer-copyright">
+    <div id="block-copyright" class="block block-block-content block-block-content8e532808-b31b-45aa-b498-0c1da67d59cc">
+  
+    
+      <div class="content">
+      
+            <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item"><p><a alt="A+E Networks EMEA" href="https://www.aenetworks.tv"><img alt="A+E Networks EMEA" class="c-footer--aetn-logo" src="/themes/custom/emea/images/ae-networks-emea-logo.svg" /></a></p>
+
+<p>&copy;<script>document.write(new Date().getFullYear())</script> <a href="http://www.aenetworks.tv/">A+E Networks EMEA</a> Alle rettigheder forbeholdes. Brug af dette websted indebærer accept af betingelser.</p>
+<style type="text/css"><!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+</style>
+</div>
+      
+    </div>
+  </div>
+
+  </section>
+
+            </div>
+          </div>
+                  </footer>
+
+  </div>
+</div>
+  </div>
+
+    
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"da\/","currentPath":"node\/368","currentPathIsAdmin":false,"isFront":true,"currentLanguage":"da"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"user":{"uid":0,"permissionsHash":"cc4c7a6d06c4d9d9ca7091244922987e89f5113dd64b6cf483645056d36a60a3"}}</script>
+<script src="/core/assets/vendor/jquery/jquery.min.js?v=3.7.1"></script>
+<script src="/core/misc/drupalSettingsLoader.js?v=10.2.3"></script>
+<script src="/core/misc/drupal.js?v=10.2.3"></script>
+<script src="/core/misc/drupal.init.js?v=10.2.3"></script>
+<script src="/themes/custom/emea/js/popper.min.js?v=10.2.3"></script>
+<script src="/themes/custom/emea/js/bootstrap.min.js?v=10.2.3"></script>
+<script src="/themes/custom/emea/js/global.js?v=10.2.3"></script>
+<script src="/themes/custom/emea/js/custom.js?v=10.2.3"></script>
+
+  </body>
+</html>
+3
+_Sx      f&��f&��F�Quf&�^   F    O^partitionKey=%28https%2Chistorytv.dk%29,:https://www.historytv.dk/da strongly-framed 1 security-info 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 request-method GET response-head HTTP/2 200 
+cache-control: max-age=3600, public
+content-language: da
+content-type: text/html; charset=UTF-8
+etag: "1713789816"
+expires: Sun, 19 Nov 1978 05:00:00 GMT
+fastly-drupal-html: YES
+last-modified: Mon, 22 Apr 2024 12:43:36 GMT
+traceresponse: 00-17c89ac1f9663276b5435c737c2326e5-ad6911cf2d427836-01
+x-content-type-options: nosniff
+x-debug-info: eyJyZXRyaWVzIjowfQ==
+x-drupal-cache: MISS
+x-drupal-dynamic-cache: MISS
+x-frame-options: SAMEORIGIN
+x-generator: Drupal 10 (https://www.drupal.org)
+x-platform-cluster: haihxqxacwzde-main-bvxea6i
+x-platform-processor: osgla3fydish3ed3zxx6bdpqjy
+x-platform-router: v7sorbqrte65uw5gashgm4dxfe
+via: 1.1 varnish, 1.1 varnish
+accept-ranges: bytes
+age: 393
+date: Mon, 22 Apr 2024 19:51:51 GMT
+x-served-by: cache-fra-etou8220154-FRA, cache-cph2320052-CPH
+x-cache: MISS, HIT
+x-cache-hits: 0, 0
+vary: Cookie
+strict-transport-security: max-age=31557600
+content-length: 21893
+X-Firefox-Spdy: h2
+ original-response-headers cache-control: max-age=3600, public
+content-language: da
+content-type: text/html; charset=UTF-8
+etag: "1713789816"
+expires: Sun, 19 Nov 1978 05:00:00 GMT
+fastly-drupal-html: YES
+last-modified: Mon, 22 Apr 2024 12:43:36 GMT
+traceresponse: 00-17c89ac1f9663276b5435c737c2326e5-ad6911cf2d427836-01
+x-content-type-options: nosniff
+x-debug-info: eyJyZXRyaWVzIjowfQ==
+x-drupal-cache: MISS
+x-drupal-dynamic-cache: MISS
+x-frame-options: SAMEORIGIN
+x-generator: Drupal 10 (https://www.drupal.org)
+x-platform-cluster: haihxqxacwzde-main-bvxea6i
+x-platform-processor: osgla3fydish3ed3zxx6bdpqjy
+x-platform-router: v7sorbqrte65uw5gashgm4dxfe
+via: 1.1 varnish, 1.1 varnish
+accept-ranges: bytes
+age: 393
+date: Mon, 22 Apr 2024 19:51:51 GMT
+x-served-by: cache-fra-etou8220154-FRA, cache-cph2320052-CPH
+x-cache: MISS, HIT
+x-cache-hits: 0, 0
+vary: Cookie
+strict-transport-security: max-age=31557600
+content-length: 21893
+X-Firefox-Spdy: h2
+ ctid 1 uncompressed-len 0 net-response-time-onstart 23 net-response-time-onstop 50   U�

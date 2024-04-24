@@ -1,0 +1,386 @@
+{
+  "rules": {
+    "base": [{
+      "regex": "^https?\\:\\/\\/partners\\.wantable\\.co\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/affiliates\\.abebooks\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/affiliates\\.babiesrus\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/affiliates\\.toysrus\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/goto\\.orientaltrading\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/goto\\.target\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/partners\\.hostgator\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/partners\\.hotwire\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/partners\\.jawbone\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/partners\\.wantable\\.co\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/[\\w]+\\.prf\\.hn\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/shareasale\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/tracking\\.groupon\\.com\\/(?:.(?!203781))*$",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.avantlink\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.awin1\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.gopjn\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.pjatr\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.pjtra\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.pntra\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.pntrac\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.pntrs\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.pepperjamnetwork\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.shareasale\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/rcm-ca\\.amazon\\.ca\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.intactearnings\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/(?:[^\\.\\/]+\\.)+7eer\\.net\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/(?:[^\\.\\/]+\\.)+evyy\\.net\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/(?:[^\\.\\/]+\\.)+ojrq\\.net\\/",
+      "ttl": 3600
+    }],
+    "stdn": [{
+      "regex": "^https?\\:\\/\\/www\\.homeaway.*[\\?\\&]utm_medium=(?:cpc|banners|affiliates)",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.vrbo.*[\\?\\&]utm_medium=(?:cpc|banners|affiliates)",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.abt.*[\\?\\&]utm_medium=(?:cpc|sc|google)",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/.*[\\?\\&]afsrc=1",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/o.honey.*[\\?\\&]src=paypal-shopping",
+      "provider": "PAYPAL",
+      "overrideBl": true,
+      "ttl": 3600
+    }],
+    "nopopup": [],
+    "suspend": [{
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.anrdoezrs\\.net\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.commission-junction\\.com\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.dpbolvw\\.net\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.apmebf\\.com\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.jdoqocy\\.com\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.kqzyfj\\.com\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.qksrv\\.net\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.tkqlhce\\.com\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.qksz\\.net\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.afcyhf\\.com\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.awltovhc\\.com\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.ftjcfx\\.com\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.lduhtrp\\.net\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.tqlkg\\.com\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.awxibrm\\.com\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.cualbr\\.com\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.rnsfpw\\.net\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.vofzpwh\\.com\\/",
+      "ttl": 3600
+    }, {
+      "provider": "CJ",
+      "regex": "^https?\\:\\/\\/www\\.yceml\\.net\\/",
+      "ttl": 3600
+    }, {
+      "provider": "LS",
+      "regex": "^https?\\:\\/\\/tk\\.jrs5\\.com\\/",
+      "ttl": 3600
+    }, {
+      "provider": "LS",
+      "regex": "^https?\\:\\/\\/linksynergy\\.walmart\\.com\\/",
+      "ttl": 3600
+    }, {
+      "provider": "LS",
+      "regex": "^https?\\:\\/\\/linksynergy\\.jrs5\\.com\\/",
+      "ttl": 3600
+    }, {
+      "provider": "LS",
+      "regex": "^https?\\:\\/\\/click\\.linksynergy\\.com\\/",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/rover\\.ebay((?![\\?\\&]pub=5575133559).)*$",
+      "provider": "LS",
+      "overrideBl": true,
+      "ttl": 86400
+    }, {
+      "regex": "^https:\\/\\/[\\w]+\\.ebay(?!.*campid=5337727371).*[\\?\\&](mkcid=|campid=|mkevt=)",
+      "provider": "LS",
+      "overrideBl": true,
+      "ttl": 86400
+    }, {
+      "provider": "LS",
+      "regex": "^https?\\:\\/\\/www\\.bestbuy\\.com\\/?\\?ref\\=6467161\\&acampID\\=0\\&loc\\=",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/tracking\\.groupon\\.com\\/.*_200014_.*$",
+      "provider": "GROUPON",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.gopjn\\.com\\/t\\/\\w+-\\w+-26991-",
+      "provider": "PJ",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.pjatr\\.com\\/t\\/\\w+-\\w+-26991-",
+      "provider": "PJ",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.pjtra\\.com\\/t\\/\\w+-\\w+-26991-",
+      "provider": "PJ",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.pntra\\.com\\/t\\/\\w+-\\w+-26991-",
+      "provider": "PJ",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.pntrac\\.com\\/t\\/\\w+-\\w+-26991-",
+      "provider": "PJ",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.pntrs\\.com\\/t\\/\\w+-\\w+-26991-",
+      "provider": "PJ",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.pepperjamnetwork\\.com\\/t\\/\\w+-\\w+-26991-",
+      "provider": "PJ",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/partners\\.wantable\\.co\\/c\\/10579",
+      "provider": "IR",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/affiliates\\.abebooks\\.com\\/c\\/10579",
+      "provider": "IR",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/affiliates\\.babiesrus\\.com\\/c\\/10579",
+      "provider": "IR",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/affiliates\\.toysrus\\.com\\/c\\/10579",
+      "provider": "IR",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/goto\\.orientaltrading\\.com\\/c\\/10579",
+      "provider": "IR",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/goto\\.target\\.com\\/c\\/10579",
+      "provider": "IR",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/partners\\.hostgator\\.com\\/c\\/10579",
+      "provider": "IR",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/partners\\.hotwire\\.com\\/c\\/10579",
+      "provider": "IR",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/partners\\.jawbone\\.com\\/c\\/10579",
+      "provider": "IR",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/partners\\.wantable\\.co\\/c\\/10579",
+      "provider": "IR",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/(?:[^\\.\\/]+\\.)+7eer\\.net\\/c\\/10579",
+      "provider": "IR",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/(?:[^\\.\\/]+\\.)+evyy\\.net\\/c\\/10579",
+      "provider": "IR",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.ftd\\.com\\/19010",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/eightsleep.*[\\?\\&]utm_medium=(?:search-paid|display|cpm|email|referral)",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/(?:try\\.)?sunbasket\\.com.*[\\?\\&]utm_medium=LQSEM",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.finishline\\.com.*[\\?\\&]utm_medium=affiliate.*\\&siteID=(?!pfLaClXlf20)",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/nordvpn\\.com.*[\\?\\&]utm_source=(?:aff614|aff1360|aff24683)",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www\\.homedepot\\.com.*[\\?\\&]cm_mmc=SEM",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/w+\\.apple\\.com.*[\\?\\&]cid=aos-us-ir",
+      "ttl": 7200
+    }, {
+      "regex": "^https?\\:\\/\\/w+\\.apple\\.com.*[\\?\\&]afid=p239",
+      "ttl": 7200
+    }, {
+      "regex": "^https?\\:\\/\\/w+\\.apple\\.com.*[\\?\\&]afid=p238",
+      "overrideBl": true,
+      "ttl": 7200
+    }, {
+      "regex": "^https?\\:\\/\\/goto.kayosports.com.au",
+      "provider": "IR",
+      "ttl": 3600
+    }, {
+      "regex": "^https?\\:\\/\\/www.awin1.com\\/awclick\\.php\\?mid=20922&id=78888",
+      "ttl": 7200
+    }, {
+      "regex": "^https?\\:\\/\\/(www\\.)?theoodie\\.com.*[\\?\\&]awc=20922",
+      "ttl": 7200
+    }, {
+      "regex": "^https?\\:\\/\\/(www\\.)?calmingblankets\\.com.*[\\?\\&]awc=20921",
+      "ttl": 7200
+    }, {
+      "regex": "^https:\\/\\/www\\.ajmadison\\.com\\/.*SID=ebs",
+      "provider": "CJ",
+      "ttl": 3600
+    }]
+  },
+  "ttl": 3600
+}
+Ò€}q©N           f(¿xFœ¥…f(«   1    ~FETCH,:https://cdn.honey.io/standdown-rules.json strongly-framed 1 security-info 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 request-method GET response-head HTTP/2 200 
+x-guploader-uploadid: ABPtcPrnOs_v1Mrizcc5HbYUaTMDjmzfz19lhLVOVgCLE8m1UiNCr--Uju8RzuLs5kx8HGVBlv8
+x-goog-generation: 1707949207196068
+x-goog-metageneration: 1
+x-goog-stored-content-encoding: identity
+x-goog-stored-content-length: 10205
+x-goog-hash: crc32c=BSs0aA==, md5=p6EV3yKnG5OSS6bn/LO9Vg==
+x-goog-storage-class: MULTI_REGIONAL
+accept-ranges: bytes
+content-length: 10205
+access-control-allow-origin: *
+access-control-expose-headers: Content-Type,Cache-Control,Expires
+server: UploadServer
+date: Wed, 24 Apr 2024 07:47:16 GMT
+expires: Wed, 24 Apr 2024 08:47:16 GMT
+cache-control: public, max-age=3600
+age: 1908
+last-modified: Wed, 14 Feb 2024 22:20:07 GMT
+etag: "a7a115df22a71b93924ba6e7fcb3bd56"
+content-type: application/json
+alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+X-Firefox-Spdy: h2
+ original-response-headers x-guploader-uploadid: ABPtcPrnOs_v1Mrizcc5HbYUaTMDjmzfz19lhLVOVgCLE8m1UiNCr--Uju8RzuLs5kx8HGVBlv8
+x-goog-generation: 1707949207196068
+x-goog-metageneration: 1
+x-goog-stored-content-encoding: identity
+x-goog-stored-content-length: 10205
+x-goog-hash: crc32c=BSs0aA==
+x-goog-hash: md5=p6EV3yKnG5OSS6bn/LO9Vg==
+x-goog-storage-class: MULTI_REGIONAL
+accept-ranges: bytes
+content-length: 10205
+access-control-allow-origin: *
+access-control-expose-headers: Content-Type,Cache-Control,Expires
+server: UploadServer
+date: Wed, 24 Apr 2024 07:47:16 GMT
+expires: Wed, 24 Apr 2024 08:47:16 GMT
+cache-control: public, max-age=3600
+age: 1908
+last-modified: Wed, 14 Feb 2024 22:20:07 GMT
+etag: "a7a115df22a71b93924ba6e7fcb3bd56"
+content-type: application/json
+alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+X-Firefox-Spdy: h2
+ ctid 1 net-response-time-onstart 126 net-response-time-onstop 131   '›

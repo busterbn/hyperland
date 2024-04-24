@@ -1,0 +1,23 @@
+" Special
+let wallpaper  = "/home/bn/Pictures/wallpapers/Lofi-Room.png"
+let background = "#131216"
+let foreground = "#c6cddc"
+let cursor     = "#c6cddc"
+
+" Colors
+let color0  = "#131216"
+let color1  = "#BDA16E"
+let color2  = "#64759C"
+let color3  = "#7488B0"
+let color4  = "#6A9DCD"
+let color5  = "#9399AF"
+let color6  = "#DEC6AE"
+let color7  = "#c6cddc"
+let color8  = "#8a8f9a"
+let color9  = "#BDA16E"
+let color10 = "#64759C"
+let color11 = "#7488B0"
+let color12 = "#6A9DCD"
+let color13 = "#9399AF"
+let color14 = "#DEC6AE"
+let color15 = "#c6cddc"

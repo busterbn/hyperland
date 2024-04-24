@@ -1,0 +1,21 @@
+set $wallpaper /home/bn/Pictures/wallpapers/Lofi-Room.png
+
+set $background #131216
+set $foreground #c6cddc
+
+set $color0 #131216
+set $color1 #BDA16E
+set $color2 #64759C
+set $color3 #7488B0
+set $color4 #6A9DCD
+set $color5 #9399AF
+set $color6 #DEC6AE
+set $color7 #c6cddc
+set $color8 #8a8f9a
+set $color9 #BDA16E
+set $color10 #64759C
+set $color11 #7488B0
+set $color12 #6A9DCD
+set $color13 #9399AF
+set $color14 #DEC6AE
+set $color15 #c6cddc

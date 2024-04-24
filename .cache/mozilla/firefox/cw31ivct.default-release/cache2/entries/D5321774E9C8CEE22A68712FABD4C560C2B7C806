@@ -1,0 +1,828 @@
+var dagcomponentfuncs = (window.dashAgGridComponentFunctions = window.dashAgGridComponentFunctions || {});
+
+// Simple component to create a custom link
+dagcomponentfuncs.StockLink = function (props) {
+    return React.createElement(
+        'a',
+        {href: 'https://finance.yahoo.com/quote/' + props.value},
+        props.value
+    );
+};
+
+// Simple html.Button
+dagcomponentfuncs.Button = function (props) {
+    const {setData, data} = props;
+
+    function onClick() {
+        setData();
+    }
+
+    return React.createElement(
+        'button',
+        {
+            onClick: onClick,
+            className: props.className,
+        },
+        props.value
+    );
+};
+
+// Simple dbc.Button
+dagcomponentfuncs.DBC_Button_Simple = function (props) {
+    const {setData, data} = props;
+
+    function onClick() {
+        setData();
+    }
+
+    return React.createElement(
+        window.dash_bootstrap_components.Button,
+        {
+            onClick: onClick,
+            color: props.color,
+        },
+        props.value
+    );
+};
+
+// Custom  HTML select component
+dagcomponentfuncs.Dropdown = function (props) {
+    const {setData, data} = props;
+
+    function selectionHandler() {
+        // update data in the grid
+        const newValue = event.target.value;
+        const colId = props.column.colId;
+        props.node.setDataValue(colId, newValue);
+        // update cellRendererData prop so it can be used to trigger a callback
+        setData(event.target.value);
+    }
+
+    const options = props.colDef.cellRendererParams.values.map((opt) =>
+        React.createElement('option', {value: opt}, opt)
+    );
+    return React.createElement(
+        'select',
+        {
+            value: props.value,
+            onChange: selectionHandler,
+            style: {padding: 10},
+        },
+        options
+    );
+};
+
+// custom component to display boolean data as a checkbox
+dagcomponentfuncs.Checkbox = function (props) {
+    const {setData, data} = props;
+
+    function onClick() {
+        if (!('checked' in event.target)) {
+            const checked = !event.target.children[0].checked;
+            const colId = props.column.colId;
+            props.node.setDataValue(colId, checked);
+        }
+    }
+
+    function checkedHandler() {
+        // update grid data
+        const checked = event.target.checked;
+        const colId = props.column.colId;
+        props.node.setDataValue(colId, checked);
+        // update cellRendererData prop so it can be used to trigger a callback
+        setData(checked);
+    }
+
+    return React.createElement(
+        'div',
+        {onClick: onClick},
+        React.createElement('input', {
+            type: 'checkbox',
+            checked: props.value,
+            onChange: checkedHandler,
+            style: {cursor: 'pointer'},
+        })
+    );
+};
+
+//custom component for displaying content different colored tags based on the cell value
+dagcomponentfuncs.Tags = function (props) {
+    if (props.value == 'High') {
+        backgroundColor = '#d8f0d3';
+    } else if (props.value == 'Low') {
+        backgroundColor = '#f5cccc';
+    } else {
+        backgroundColor = '#fffec8';
+    }
+    return React.createElement(
+        'div',
+        {
+            style: {
+                width: '100%',
+                height: '100%',
+                padding: '5px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            },
+        },
+        React.createElement(
+            'div',
+            {
+                style: {
+                    backgroundColor: backgroundColor,
+                    borderRadius: '15px',
+                    padding: '5px',
+                    color: 'black',
+                },
+            },
+            props.value
+        )
+    );
+};
+
+// custom html img component to display an image thumbnail in the grid
+dagcomponentfuncs.ImgThumbnail = function (props) {
+    const {setData, data} = props;
+
+    function onClick() {
+        setData(props.value);
+    }
+
+    return React.createElement(
+        'div',
+        {
+            style: {
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+            },
+        },
+        React.createElement('img', {
+            onClick: onClick,
+            style: {width: '100%', height: 'auto'},
+            src: props.value,
+        })
+    );
+};
+
+// Custom button that when clicked updates other columns in the grid
+dagcomponentfuncs.CustomButton = function (props) {
+    const {setData, data} = props;
+
+    function onClick() {
+        // update data in the grid
+        let colId = props.column.colId;
+        let newData = JSON.parse(JSON.stringify(props.node.data[colId]));
+        newData['n_clicks']++;
+        props.node.setDataValue(colId, newData);
+        // Update the dropdown value based on which button was clicked
+        props.node.setDataValue('action', colId);
+        // update cellRendererData prop so it can be used to trigger a callback - include n_clicks
+        setData({n_clicks: newData['n_clicks']});
+    }
+
+    return React.createElement(
+        'button',
+        {
+            onClick: onClick,
+            className: props.value.className,
+        },
+        props.value.children
+    );
+};
+
+// Custom Tootlip component
+dagcomponentfuncs.CustomTooltip = function (props) {
+    info = [
+        React.createElement('h4', {}, props.data.ticker),
+        React.createElement('div', {}, props.data.company),
+        React.createElement('div', {}, props.data.price),
+    ];
+    return React.createElement(
+        'div',
+        {
+            style: {
+                border: '2pt solid white',
+                backgroundColor: props.color || 'grey',
+                padding: 10,
+            },
+        },
+        info
+    );
+};
+
+// Used in the conditional rendering example
+dagcomponentfuncs.MoodRenderer = function (props) {
+    const imgForMood =
+        'https://www.ag-grid.com/example-assets/smileys/' +
+        (props.value === 'Happy' ? 'happy.png' : 'sad.png');
+
+    return React.createElement('img', {src: imgForMood, width: '20px'});
+};
+
+dagcomponentfuncs.GenderRenderer = function (props) {
+    const image = props.value === 'Male' ? 'male.png' : 'female.png';
+    const imageSource = `https://www.ag-grid.com/example-assets/genders/${image}`;
+    return React.createElement('img', {src: imageSource, width: '20px'});
+};
+
+// use for adding a dcc.Graph to the grid with clickData available in a callback
+dagcomponentfuncs.DCC_GraphClickData = function (props) {
+    const {setData} = props;
+
+    function setProps() {
+        const graphProps = arguments[0];
+        if (graphProps['clickData']) {
+            setData(graphProps);
+        }
+    }
+
+    return React.createElement(window.dash_core_components.Graph, {
+        figure: props.value,
+        setProps,
+        style: {height: '100%'},
+        config: {displayModeBar: false},
+    });
+};
+
+// use for displaying sparklines made with dcc.Graph.  Note - the figure has no no user interaction
+dagcomponentfuncs.DCC_Graph = function (props) {
+    return React.createElement(window.dash_core_components.Graph, {
+        figure: props.value,
+        style: {height: '100%'},
+        config: {displayModeBar: false},
+    });
+};
+
+// use for making dbc.Button with FontAwesome or Bootstrap icons
+dagcomponentfuncs.DBC_Button = function (props) {
+    const {setData, data} = props;
+
+    function onClick() {
+        setData();
+    }
+
+    let leftIcon, rightIcon;
+    if (props.leftIcon) {
+        leftIcon = React.createElement('i', {
+            className: props.leftIcon,
+        });
+    }
+    if (props.rightIcon) {
+        rightIcon = React.createElement('i', {
+            className: props.rightIcon,
+        });
+    }
+    return React.createElement(
+        window.dash_bootstrap_components.Button,
+        {
+            onClick,
+            color: props.color,
+            disabled: props.disabled,
+            download: props.download,
+            external_link: props.external_link,
+            // customize this link for your application:
+            href: (props.href === undefined) ? null : 'https://finance.yahoo.com/quote/' + props.value,
+            outline: props.outline,
+            size: props.size,
+            style: {
+                margin: props.margin,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            },
+            target: props.target,
+            title: props.title,
+            type: props.type,
+        },
+        leftIcon,
+        props.value,
+        rightIcon
+    );
+};
+
+// use for making dbc.Progress
+dagcomponentfuncs.DBC_Progress = function (props) {
+    const {setData, data} = props;
+
+    function onClick() {
+        setData(props.value);
+    }
+
+    return React.createElement(
+        window.dash_bootstrap_components.Progress,
+        {
+            onClick,
+            animated: props.animated,
+            className: props.className,
+            color: props.color,
+            label: (props.label === undefined) ? "" : props.value + '%',
+            max: props.max,
+            min: props.min,
+            striped: props.striped,
+            style: props.style,
+            value: props.value
+        },
+    );
+};
+
+
+// use for making dmc.Button with DashIconify icons
+dagcomponentfuncs.DMC_Button = function (props) {
+    const {setData, data} = props;
+
+    function onClick() {
+        setData();
+    }
+
+    let leftIcon, rightIcon;
+    if (props.leftIcon) {
+        leftIcon = React.createElement(window.dash_iconify.DashIconify, {
+            icon: props.leftIcon,
+        });
+    }
+    if (props.rightIcon) {
+        rightIcon = React.createElement(window.dash_iconify.DashIconify, {
+            icon: props.rightIcon,
+        });
+    }
+    return React.createElement(
+        window.dash_mantine_components.Button,
+        {
+            onClick,
+            variant: props.variant,
+            color: props.color,
+            leftIcon,
+            rightIcon,
+            radius: props.radius,
+            style: {
+                margin: props.margin,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            },
+        },
+        props.value
+    );
+};
+
+// Custom Loading Overlay
+dagcomponentfuncs.CustomLoadingOverlay = function (props) {
+    return React.createElement(
+        'div',
+        {
+            style: {
+                border: '1pt solid grey',
+                color: props.color || 'grey',
+                padding: 10,
+            },
+        },
+        props.loadingMessage
+    );
+};
+
+// Custom overlay for No Rows
+dagcomponentfuncs.CustomNoRowsOverlay = function (props) {
+    return React.createElement(
+        'div',
+        {
+            style: {
+                border: '1pt solid grey',
+                color: 'grey',
+                padding: 10,
+                fontSize: props.fontSize,
+            },
+        },
+        props.message
+    );
+};
+
+
+// Used in  Enterprise Group Cell Renderer example
+dagcomponentfuncs.SimpleCellRenderer = function (props) {
+    return React.createElement(
+        'span',
+        {
+            style: {
+                backgroundColor: props.node.group ? 'coral' : 'lightgreen',
+                padding: 2,
+            },
+        },
+        props.value
+    );
+};
+
+// Used in the Row Spanning page - example Row Spanning Complex Example
+dagcomponentfuncs.RowSpanningComplexCellRenderer = function (props) {
+    let children;
+    if (props.value) {
+        children = [
+            React.createElement('div', {className: 'show-name'}, props.value.name),
+            React.createElement('div', {className: 'show-presenter'}, props.value.presenter),
+        ]
+    }
+    return React.createElement('div', null, children)
+}
+
+//Used in the Row Dragging page - example Row Dragger inside Custom Cell Renderers
+dagcomponentfuncs.RowDraggingCustomCellRenderer = function (props) {
+
+    const myRef = React.useRef(null);
+
+    React.useEffect(() => {
+        props.registerRowDragger(myRef.current, props.startDragPixels);
+    });
+
+    return React.createElement('div', {className: 'my-custom-cell-renderer'},
+        [
+            React.createElement('div', {className: 'athlete-info'}, [
+                React.createElement('span', null, props.data.athlete),
+                React.createElement('span', null, props.data.country),
+            ]),
+            React.createElement('span', null, props.data.year),
+            React.createElement('i', {className: 'fas fa-arrows-alt-v', ref: myRef})
+        ]
+    );
+};
+
+// Used in the Row Dragging page - example Full Width Row Dragging
+dagcomponentfuncs.RowDraggingFullWidthRow = function (props) {
+
+    const latinText = `<p>Sample Text in a Paragraph</p>
+<p>Lorem ipsum dolor sit amet, his mazim necessitatibus te, mea volutpat intellegebat at. Ea nec perpetua liberavisse, 
+et modo rebum persius pri. Velit recteque reprimique quo at. Vis ex persius oporteat, esse voluptatum moderatius te vis.
+ Ex agam suscipit aliquando eum. Mediocrem molestiae id pri, ei cibo facilisis mel. Ne sale nonumy sea. Et vel lorem 
+ omittam vulputate. Ne prima impedit percipitur vis, erat summo an pro. Id urbanitas deterruisset cum, at legere 
+ oportere has. No saperet lobortis elaboraret qui, alii zril at vix, nulla soluta ornatus per ad. Feugiat consequuntur 
+ vis ad, te sit quodsi persequeris, labore perpetua mei ad. Ex sea affert ullamcorper disputationi, sit nisl elit 
+ elaboraret te, quodsi doctus verear ut eam. Eu vel malis nominati, per ex melius delenit incorrupte. Partem 
+ complectitur sed in. Vix dicta tincidunt ea. Id nec urbanitas voluptaria, pri no nostro disputationi. Falli 
+ graeco salutatus pri ea.</p>
+ <p>Quo ad omnesque phaedrum principes, tale urbanitas constituam et ius, pericula consequat ad est. Ius tractatos 
+ referrentur deterruisset an, odio consequuntur sed ad. Ea molestie adipiscing adversarium eos, tale veniam sea no. 
+ Mutat nullam philosophia sed ad. Pri eu dicta consulatu, te mollis quaerendum sea. Ei doming commodo euismod vis. 
+ Cu modus aliquip inermis his, eos et eirmod regione delicata, at odio definiebas vis.</p>`;
+
+    const myRef = React.useRef(null);
+
+    React.useEffect(() => {
+        props.registerRowDragger(myRef.current, undefined, props.data.name);
+    });
+
+    return React.createElement('div', {className: 'full-width-panel', ref: myRef}, [
+        React.createElement('div', {className: 'full-width-flag'},
+            React.createElement('img', {
+                width: "68", height: "40",
+                src: "/assets/images/ag-grid/flags/" + props.data.code + ".svg"
+            }, null),
+        ),
+        React.createElement('div', {className: 'full-width-summary'}, [
+            React.createElement('span', {className: 'full-width-title'}, props.data.name),
+            React.createElement('br'),
+            React.createElement('label', {style: {display: "inline"},}, [
+                React.createElement('b', null, "Population: "),
+                props.data.population
+            ]),
+            React.createElement('br'),
+            React.createElement('label', {style: {display: "inline"},}, [
+                React.createElement('b', null, "Known For: "),
+                props.data.summary
+            ]),
+            React.createElement('br'),
+        ]),
+        React.createElement('div', {
+            className: 'full-width-center',
+            dangerouslySetInnerHTML: {__html: latinText},
+        })
+    ]);
+}
+
+
+var COUNTRY_CODES = {
+    Ireland: "ie",
+    Luxembourg: "lu",
+    Belgium: "be",
+    Spain: "es",
+    France: "fr",
+    Germany: "de",
+    Sweden: "se",
+    Italy: "it",
+    Greece: "gr",
+    Iceland: "is",
+    Portugal: "pt",
+    Malta: "mt",
+    Norway: "no",
+    Brazil: "br",
+    Argentina: "ar",
+    Colombia: "co",
+    Peru: "pe",
+    Venezuela: "ve",
+    Uruguay: "uy",
+};
+
+// used in the set filters cell renderer example
+dagcomponentfuncs.CountryCellRenderer = function (props) {
+    if (props.value === "(Select All)") {
+        return props.value;
+    }
+
+    // for more info see https://flagpedia.net/
+    const url = `https://flagcdn.com/h20/${COUNTRY_CODES[props.value]}.png`;
+
+    return React.createElement("span", {}, [
+        React.createElement("img", {
+            style: {height: "10px"},
+            src: url,
+        }),
+        React.createElement(
+            "span",
+            {
+                style: {paddingLeft: "4px"},
+            },
+            props.value
+        ),
+    ]);
+};
+
+// used in the cell renderer flags example
+dagcomponentfuncs.FlagsCellRenderer = function (props) {
+    // for more info see https://flagpedia.net/
+    const url = `https://flagcdn.com/h20/${props.data.country_code}.png`;
+
+    return React.createElement("span", {}, [
+        React.createElement("img", {
+            style: {height: "10px"},
+            src: url,
+        }),
+        React.createElement(
+            "span",
+            {
+                style: {paddingLeft: "4px"},
+            },
+            props.value
+        ),
+    ]);
+};
+
+// used in the set filters case sensitive example
+dagcomponentfuncs.ColourCellRenderer = (props) => {
+    if (!props.value || props.value === "(Select All)") {
+        return props.value;
+    }
+
+    const styles = {
+        verticalAlign: "middle",
+        border: "1px solid black",
+        margin: 3,
+        display: "inline-block",
+        width: 10,
+        height: 10,
+        backgroundColor: props.value.toLowerCase(),
+    };
+    return React.createElement("div", {}, [
+        React.createElement("span", {style: styles}),
+        React.createElement("span", {}, props.value),
+    ]);
+};
+
+// used in set filters tooltips
+dagcomponentfuncs.CustomTooltipSetFilter = function (props) {
+    info = React.createElement("div", {}, props.value);
+    if (props.location === "setFilterValue") {
+        info = [
+            React.createElement("strong", {}, "Full Info: "),
+            React.createElement("span", {}, props.value),
+        ];
+    }
+
+    return React.createElement(
+        "div",
+        {
+            style: {
+                padding: 15,
+                width: 200,
+                border: "1px solid cornflowerblue",
+                pointerEvents: "none",
+                transition: "opacity 1s",
+                backgroundColor: "white",
+            },
+        },
+        info
+    );
+};
+
+
+// used in infinite row model examples
+dagcomponentfuncs.SpinnerCellRenderer = function (props) {
+    if (props.value !== undefined) {
+        return props.value;
+    } else {
+        return React.createElement(window.dash_bootstrap_components.Spinner, {color: "primary", size: "sm"})
+    }
+};
+
+
+//Custom Cell Renderer, triple buttons
+//Used in page Column moving - example Advanced Locked Position
+dagcomponentfuncs.TripleButtonsCellRenderer = function (props) {
+    return React.createElement('div', {}, [
+        React.createElement('button', {style: {padding: ".2em 1em"}}, 'A'),
+        React.createElement('button', {style: {padding: ".2em 1em"}}, 'B'),
+        React.createElement('button', {style: {padding: ".2em 1em"}}, 'C'),
+    ])
+};
+
+// Used in Row Pinning page - example Pinned Bottom Rows
+dagcomponentfuncs.RowPinningBottomComponent = function (props) {
+    return React.createElement('span', {style: props.style}, props.value)
+}
+
+
+//Used in page Full Width Rows - example Define Full Width Rows
+dagcomponentfuncs.fullWidthCellRendererCountry = function (props) {
+    return React.createElement('span', null, [
+        React.createElement('img', {
+            width: "17", height: "12", style: {verticalAlign: "baseline", marginRight: "5px"},
+            src: "/assets/images/ag-grid/flags/" + props.data.code + ".svg"
+        }, null),
+        props.value,
+    ])
+}
+
+dagcomponentfuncs.fullWidthCellRendererSimple = function (props) {
+    const latinText = `<p>Sample Text in a Paragraph</p>
+<p>Lorem ipsum dolor sit amet, his mazim necessitatibus te, mea volutpat intellegebat at. Ea nec perpetua liberavisse, 
+et modo rebum persius pri. Velit recteque reprimique quo at. Vis ex persius oporteat, esse voluptatum moderatius te vis.
+ Ex agam suscipit aliquando eum. Mediocrem molestiae id pri, ei cibo facilisis mel. Ne sale nonumy sea. Et vel lorem 
+ omittam vulputate. Ne prima impedit percipitur vis, erat summo an pro. Id urbanitas deterruisset cum, at legere 
+ oportere has. No saperet lobortis elaboraret qui, alii zril at vix, nulla soluta ornatus per ad. Feugiat consequuntur 
+ vis ad, te sit quodsi persequeris, labore perpetua mei ad. Ex sea affert ullamcorper disputationi, sit nisl elit 
+ elaboraret te, quodsi doctus verear ut eam. Eu vel malis nominati, per ex melius delenit incorrupte. Partem 
+ complectitur sed in. Vix dicta tincidunt ea. Id nec urbanitas voluptaria, pri no nostro disputationi. Falli 
+ graeco salutatus pri ea.</p>
+ <p>Quo ad omnesque phaedrum principes, tale urbanitas constituam et ius, pericula consequat ad est. Ius tractatos 
+ referrentur deterruisset an, odio consequuntur sed ad. Ea molestie adipiscing adversarium eos, tale veniam sea no. 
+ Mutat nullam philosophia sed ad. Pri eu dicta consulatu, te mollis quaerendum sea. Ei doming commodo euismod vis. 
+ Cu modus aliquip inermis his, eos et eirmod regione delicata, at odio definiebas vis.</p>`;
+
+    return React.createElement('div', {className: 'full-width-panel'}, [
+        React.createElement('div', {className: 'full-width-flag'},
+            React.createElement('img', {
+                width: "68", height: "40",
+                src: "/assets/images/ag-grid/flags/" + props.data.code + ".svg"
+            }, null),
+        ),
+        React.createElement('div', {className: 'full-width-summary'}, [
+            React.createElement('span', {className: 'full-width-title'}, props.data.name),
+            React.createElement('br'),
+            React.createElement('label', {style: {display: "inline"},}, [
+                React.createElement('b', null, "Population: "),
+                props.data.population
+            ]),
+            React.createElement('br'),
+            React.createElement('label', {style: {display: "inline"},}, [
+                React.createElement('b', null, "Known For: "),
+                props.data.summary
+            ]),
+            React.createElement('br'),
+        ]),
+        React.createElement('div', {className: 'full-width-center', dangerouslySetInnerHTML: {__html: latinText},})
+    ]);
+}
+
+//used in page Full Width Rows - example Detailed Full Width Example
+dagcomponentfuncs.fullWidthCellRendererDetailed = function (props) {
+    const [cssClass] = React.useState(
+        props.node.rowPinned
+            ? 'full-width-row pinned-row'
+            : 'full-width-row'
+    );
+
+    const [message] = React.useState(
+        props.node.rowPinned
+            ? `Pinned full width row at index ${props.rowIndex}`
+            : `Body full width row at index${props.rowIndex}`
+    );
+
+    return React.createElement('div', {className: cssClass},
+        React.createElement(
+            'button',
+            {onClick: () => alert('button clicked')},
+            "Click"
+        ),
+        message
+    )
+}
+
+/* used in page Full Width Rows - example Embedded Full Width Rows*/
+dagcomponentfuncs.fullWidthCellRendererEmbedded = function (props) {
+    const [cssClass] = React.useState(
+        props.pinned
+            ? 'full-width-row pinned-column'
+            : 'full-width-row'
+    );
+
+    const [message] = React.useState(
+        props.pinned
+            ? `Pinned full width on ${props.pinned} - index ${props.rowIndex}`
+            : `Non pinned full width - index ${props.rowIndex}`
+    );
+
+    return React.createElement('div', {className: cssClass},
+        React.createElement(
+            'button',
+            {onClick: () => alert('button clicked')},
+            "Click"
+        ),
+        message
+    )
+}
+
+/* used in page Full Width Rows - example Full Width Keyboard Navigation*/
+dagcomponentfuncs.fullWidthCellRendererKeyboard = function (props) {
+    const {code, name, language} = props.data;
+
+    return React.createElement('div', {className: 'full-width-panel'}, [
+            React.createElement(
+                'button', null,
+                React.createElement('img', {
+                    width: "25", height: "20", src: "/assets/images/ag-grid/flags/" + code + ".svg"
+                }),
+            ),
+            React.createElement('input', {defaultValue: name}),
+            React.createElement('a', {
+                href: `https://www.google.com/search?q=${language}`, target: "_blank", style: {color: "blue"},
+            }, language),
+        ]
+    )
+}
+
+
+dagcomponentfuncs.EditButton = function (props) {
+    function onButtonClicked() {
+        props.api.startEditingCell({
+            rowIndex: props.rowIndex,
+            colKey: props.column.getId(),
+        });
+    }
+
+    return React.createElement('span', {}, [
+        React.createElement(
+            'button',
+            {onClick: onButtonClicked, style: {padding: 5}},
+            '‚úé'
+        ),
+        React.createElement(
+            'span',
+            {style: {paddingLeft: '4px'}},
+            props.value
+        ),
+    ]);
+};
+
+// used in page Cell Rendering - example Many Renderers One Column
+dagcomponentfuncs.MoodRenderer = params => {
+    return React.createElement('span', {style: {fontSize: '1.5em'}}, params.value === 'Happy' ? 'üòÄ' : 'üòû')
+};
+
+dagcomponentfuncs.GenderRenderer = params => {
+    const icon = params.value === 'Male' ? 'fas fa-mars fa-lg' : 'fas fa-venus fa-lg';
+    return React.createElement('div', null, [
+        React.createElement('i', {className: icon, style: {color: params.color}}),
+        ` ${params.value}`
+    ])
+};
+
+
+
+
+zÒÛÛf      f$Áåf$ÁèFÕ
+       v    O^partitionKey=%28https%2Cplotly.com%29,:https://dash.plotly.com/assets/dashAgGridComponentFunctions.js?m=1713366137.0 strongly-framed 1 security-info FnhllAKWRHGAlo+ESXykKAAAAAAAAAAAwAAAAAAAAEaphjojH6pBabDSgSnsfLHeAAAAAgAAAAAAAAAAAAAAAAAAAAEAOQFmCjImkVxP+7sgiYWmMt8FvcOXmlQiTNWFiWlrbpbqgwAAAAAAAATuMIIE6jCCA9KgAwIBAgISBH97dxNPvztLIwlbWVIAkwGLMA0GCSqGSIb3DQEBCwUAMDIxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MQswCQYDVQQDEwJSMzAeFw0yNDAzMTEwMzExMDNaFw0yNDA2MDkwMzExMDJaMBoxGDAWBgNVBAMTD2Rhc2gucGxvdGx5LmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMACMyEzY2ea6ky8tVji+HPAi60PI1TWYEnM7uBlvmLwfvjhRbHt2OxSrSls4edIbUPYHMWPgwWwrXHmMnq7xJWKOBDdcfc2zSlBw+5IyNxY9MRDKWJ/P0oPccgioM+7wkqcPPiq1sxKzuxE9Wwqc9196vV7A+E8rvzwgGMyuLYzboPthNq5eGKS25F7sxMmI6q7ATwQ9wsHvRL2eHRV3EU5546X9qKGc5GYRFJTgON6TNAc2WEd3K3Fb5snGLSVxy5fR2oEZ00Fs6OzsjpaLpMXqoKXyVmMUUpH92GVkiT9HuJX7Z4PLt9BgVpfybwkBZIdSA5P32OKOQV1DvMYeuMCAwEAAaOCAhAwggIMMA4GA1UdDwEB/wQEAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDAYDVR0TAQH/BAIwADAdBgNVHQ4EFgQUGbiRejBZq5rUsdCdnVnOAM9cLhwwHwYDVR0jBBgwFoAUFC6zF7dYVsuuUAlA5h+vnYsUwsYwVQYIKwYBBQUHAQEESTBHMCEGCCsGAQUFBzABhhVodHRwOi8vcjMuby5sZW5jci5vcmcwIgYIKwYBBQUHMAKGFmh0dHA6Ly9yMy5pLmxlbmNyLm9yZy8wGgYDVR0RBBMwEYIPZGFzaC5wbG90bHkuY29tMBMGA1UdIAQMMAowCAYGZ4EMAQIBMIIBAwYKKwYBBAHWeQIEAgSB9ASB8QDvAHYAO1N3dT4tuYBOizBbBv5AO2fYT8P0x70ADS1yb+H61BcAAAGOK7T1lAAABAMARzBFAiApmCKBmi71owuECq757hMdFSlYLA65adG5+1HjDucH1wIhAJKfKGM4NkKKiEzamUFuCJ3h4LMJ0EZ1qffGqODE7YHIAHUAouK/1h7eLy8HoNZObTen3GVDsMa1LqLat4r4mm31F9gAAAGOK7T1qwAABAMARjBEAiBSMCWgIw/nLyxyxBWW4cqM4aqFHiqwO62+vOIKPCxE+QIgGPFKZY/uwzFQMsMxQ0W2+s8BH8OPYBTaT/B9fG/u86IwDQYJKoZIhvcNAQELBQADggEBAI8b9c6qAT+k1V0S4GB9iWHHV0rnXG1dZhpEggIimhzYofM2Q4lahhyQuDDpoRbTwSZ/hS34XfD+ntpLSMX+kKYrNOh8cF1j1Y/HFRQ2cxor9S8Km3OwMm07JoDGCbIxdn7Ibsfbmweb0fegutSUwkE2CFxRo7HIFxOYxPfMuUvje6L75ScLApMOHljaqrIi8IQQufgkTpAGKrtsWJeGcNwsbVNp2BX7RJXiVGac8N4zsN0qgmiTDFf/TRZ2EB8pDAHRmotVEDRZ+MJ91Xg42J4yY/uetiJqJBuwOCgQHYicfLaFP4bJ+F46N0SMRBlP5c0/jpsJXJ67fjysbAtJUA8TAQAEAAAAAAABAQAAAAAAAAZ4MjU1MTkAAAAOUlNBLVBTUy1TSEEyNTYAA2YKMiaRXE/7uyCJhaYy3wW9w5eaVCJM1YWJaWtuluqDAAAAAAAABO4wggTqMIID0qADAgECAhIEf3t3E0+/O0sjCVtZUgCTAYswDQYJKoZIhvcNAQELBQAwMjELMAkGA1UEBhMCVVMxFjAUBgNVBAoTDUxldCdzIEVuY3J5cHQxCzAJBgNVBAMTAlIzMB4XDTI0MDMxMTAzMTEwM1oXDTI0MDYwOTAzMTEwMlowGjEYMBYGA1UEAxMPZGFzaC5wbG90bHkuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwAIzITNjZ5rqTLy1WOL4c8CLrQ8jVNZgSczu4GW+YvB++OFFse3Y7FKtKWzh50htQ9gcxY+DBbCtceYyervElYo4EN1x9zbNKUHD7kjI3Fj0xEMpYn8/Sg9xyCKgz7vCSpw8+KrWzErO7ET1bCpz3X3q9XsD4Tyu/PCAYzK4tjNug+2E2rl4YpLbkXuzEyYjqrsBPBD3Cwe9EvZ4dFXcRTnnjpf2ooZzkZhEUlOA43pM0BzZYR3crcVvmycYtJXHLl9HagRnTQWzo7OyOloukxeqgpfJWYxRSkf3YZWSJP0e4lftng8u30GBWl/JvCQFkh1IDk/fY4o5BXUO8xh64wIDAQABo4ICEDCCAgwwDgYDVR0PAQH/BAQDAgWgMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAMBgNVHRMBAf8EAjAAMB0GA1UdDgQWBBQZuJF6MFmrmtSx0J2dWc4Az1wuHDAfBgNVHSMEGDAWgBQULrMXt1hWy65QCUDmH6+dixTCxjBVBggrBgEFBQcBAQRJMEcwIQYIKwYBBQUHMAGGFWh0dHA6Ly9yMy5vLmxlbmNyLm9yZzAiBggrBgEFBQcwAoYWaHR0cDovL3IzLmkubGVuY3Iub3JnLzAaBgNVHREEEzARgg9kYXNoLnBsb3RseS5jb20wEwYDVR0gBAwwCjAIBgZngQwBAgEwggEDBgorBgEEAdZ5AgQCBIH0BIHxAO8AdgA7U3d1Pi25gE6LMFsG/kA7Z9hPw/THvQANLXJv4frUFwAAAY4rtPWUAAAEAwBHMEUCICmYIoGaLvWjC4QKrvnuEx0VKVgsDrlp0bn7UeMO5wfXAiEAkp8oYzg2QoqITNqZQW4IneHgswnQRnWp98ao4MTtgcgAdQCi4r/WHt4vLweg1k5tN6fcZUOwxrUuotq3iviabfUX2AAAAY4rtPWrAAAEAwBGMEQCIFIwJaAjD+cvLHLEFZbhyozhqoUeKrA7rb684go8LET5AiAY8Uplj+7DMVAywzFDRbb6zwEfw49gFNpP8H18b+7zojANBgkqhkiG9w0BAQsFAAOCAQEAjxv1zqoBP6TVXRLgYH2JYcdXSudcbV1mGkSCAiKaHNih8zZDiVqGHJC4MOmhFtPBJn+FLfhd8P6e2ktIxf6Qpis06HxwXWPVj8cVFDZzGiv1Lwqbc7AybTsmgMYJsjF2fshux9ubB5vR96C61JTCQTYIXFGjscgXE5jE98y5S+N7ovvlJwsCkw4eWNqqsiLwhBC5+CROkAYqu2xYl4Zw3CxtU2nYFftEleJUZpzw3jOw3SqCaJMMV/9NFnYQHykMAdGai1UQNFn4wn3VeDjYnjJj+562ImokG7A4KBAdiJx8toU/hsn4Xjo3RIxEGU/lzT+Omwlcnrt+PKxsC0lQD2YKMiaRXE/7uyCJhaYy3wW9w5eaVCJM1YWJaWtuluqDAAAAAAAABRowggUWMIIC/qADAgECAhEAkSsISs8MGKdT9tYuJadfWjANBgkqhkiG9w0BAQsFADBPMQswCQYDVQQGEwJVUzEpMCcGA1UEChMgSW50ZXJuZXQgU2VjdXJpdHkgUmVzZWFyY2ggR3JvdXAxFTATBgNVBAMTDElTUkcgUm9vdCBYMTAeFw0yMDA5MDQwMDAwMDBaFw0yNTA5MTUxNjAwMDBaMDIxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MQswCQYDVQQDEwJSMzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALsCFSjM9qCU0w8S7I1VksP4gvGZpnpCiKddJqq1K7nFTLGvjmv5dcij1w9HlBRVNVeMnqiiORn1gjxCqU5u9TvDLtuNwLBc81k45+3PafBaCxu+wJQkJYf6N3GzE+ccrOGb79vkO0VSRZapwVPONMhS7rWu7Y/eYHDipVSrtm0Ol6VANGsr07xm62Y0fPpri49XKZn4MBddunJv+4HFrdKGWD0Xx+cJu/Er94bcwdpxXdRG48ytJcGIvGBndWaz8Rj3olzmU/86iLZHpf8TGOqYCXc/nVP5zwHl9aZwFxSvY6T/mbOTndxTpwb+SIUdoWmuJXW7E8xSA/XtUaGL2xUCAwEAAaOCAQgwggEEMA4GA1UdDwEB/wQEAwIBhjAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwEgYDVR0TAQH/BAgwBgEB/wIBADAdBgNVHQ4EFgQUFC6zF7dYVsuuUAlA5h+vnYsUwsYwHwYDVR0jBBgwFoAUebRZ5nu25eQBc4AIiMgaWPbpm24wMgYIKwYBBQUHAQEEJjAkMCIGCCsGAQUFBzAChhZodHRwOi8veDEuaS5sZW5jci5vcmcvMCcGA1UdHwQgMB4wHKAaoBiGFmh0dHA6Ly94MS5jLmxlbmNyLm9yZy8wIgYDVR0gBBswGTAIBgZngQwBAgEwDQYLKwYBBAGC3xMBAQEwDQYJKoZIhvcNAQELBQADggIBAIXKTkc+o/eFRIW81Wd4sphjrXVNHpY9M2VyVC2BoOrD7fggv1/Mt3AAt2479l6U3uQgn6bvi7ID56K1FjyRzrTtOQLnfCWKR+Zlbj9G9NnwzpQr7lTOEryMJ0u4wZgvoq/NcZFKCLfIuCN7BC0I+QhXPoPZBDMKRyF4CYInwyrIm7nOXPJkyMC+ecBPjm1EDF6Suy73ixDh6B1EKdtZIO1juSH4EiaUk1egHWUEwQoirhANQ5ehGB9+4OCGN7Vasb0wv4duKyr/IU4bBcP1GJfwXqzDpbhq8C68OzO57kvezPzkr4QLhj/AVUM29mjhNhdqjpnR/6VApzS3wNBjOTU5dW7yunbIkwLpqUtsF84MAtm9gfuft2jUBmWzgj13U/iOeQOtCjEHdSpD2FWXcsQpDvfEXU7IrkaEMNfyhV8YoXm7515wiwfhhpPDuY/cYXElKq/f7SVQUmiLktzl1rXj2n3Qh2yEITGugvX7uavIiRc94UzlOA72vSu9loEU69XbPSCnflnT4vhY+Vu4SM3+XE8WKf4eVSOvyBGwjep8k5AXL/2soglHRj/w6bC3/yhNaDLWZ14eaaOTuPWdiy8L0lJDpm8yV2VNMoHfOFOFXX5dZinquN3klbXNtVYSQs3ETsYlOERQbezOAFUY/ulJZNROypectFvAc6iruEfCZgoyJpFcT/u7IImFpjLfBb3Dl5pUIkzVhYlpa26W6oMAAAAAAAAFbzCCBWswggNToAMCAQICEQCCEM+w0kDjWURj4LtjgosAMA0GCSqGSIb3DQEBCwUAME8xCzAJBgNVBAYTAlVTMSkwJwYDVQQKEyBJbnRlcm5ldCBTZWN1cml0eSBSZXNlYXJjaCBHcm91cDEVMBMGA1UEAxMMSVNSRyBSb290IFgxMB4XDTE1MDYwNDExMDQzOFoXDTM1MDYwNDExMDQzOFowTzELMAkGA1UEBhMCVVMxKTAnBgNVBAoTIEludGVybmV0IFNlY3VyaXR5IFJlc2VhcmNoIEdyb3VwMRUwEwYDVQQDEwxJU1JHIFJvb3QgWDEwggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQCt6CRz9BQ385ueK1coHIe+3LffOJCMbjzmV6B493XCov71am72AE8o295ohmxEk7axY/0UEmu/H9LqMZshftEzPLpI9d1537O4/xLxIZpLwYqGcWlKZmZsj348cL+tKSIG8+TA5oCu4kuPt5l+lAOf00eXfJlII1PoOK5PCm+DLtFJV4yAdLbaL9A4jXsDcCEbdfIwPPqPrt3aY6vrFk/CjhFLfs8L6P+1dy70sntK4EwSJQxwjQMpoOFTJOwT2e4ZvxCzSow/iaNhUd6shweU9GNx7C7ib1uYgeGJXDR5bHbvO5BieebbpJovJsXQEOEO3tkQjhb7t/eo98flAgeYjzYIlefiN5YNNnWe+w5ysR2bvAP5SQXYgd0FtCrWQemsAXaVCg/Y39W9Eh81LygXbNKYwagJZHduRze6zqxZXmidf3LWicUGQSk+WT7dJvUkyRGnWqNMQB9GoZm1pzpRboY7nn1ypxIFeFntPlF4FQsDj43QLwWyPntKHEtzBRL8xurgUBN8Q5N0s8p0544fAQjQMNRbcTa0B7rBMDBcSLeCO5imfWCKoqMpgsy6vYMEG6KDA0Gh1gXxG8K28Kh8hjtGqEgqiNx2mna/H2qlPRmP6zjzZN7IKw0KKP/32+IVQtQi0Cdd4Xn+GOdwiK1O5tmLOsbdJ1Fu/7xk9TNDTwIDAQABo0IwQDAOBgNVHQ8BAf8EBAMCAQYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUebRZ5nu25eQBc4AIiMgaWPbpm24wDQYJKoZIhvcNAQELBQADggIBAFUfWKm8sqhQ0Ayx2BppICcpCKxhdVyKbviC5Wkv1fZWS7m4cxBZ0yGXfudMcfuy0mCtOagL6hchVoXxUA5Z687gWem6yRXvhp2PhID25OmRkNwXm2IbRfBmldJ8b8LqO+8fz8vWrifxqbDIrv19fpr6IgTr/9l/6pErIrEXDo/yijRbWNj8AclUubgmzIqIM4lMLYQ8gt/ullcFuiy798S3x047gr4xyCJzc5LRwoCkOTkQMyOCTDyfhrJVmB2+KYaMIpue4ms7VzqCcE3cCceJywoHTWzoXY7J786rx7u1K05F1krQJszlcsoIaqWV4xWh96TtySxfpfv/rCgCLr7Xe7vjcXuQFtMHXkZTfDcHQozTxJac1Zm1KuCVGoBIrkw5B87MR6RSlSu6uPut0jNTfeUdTW3VobHHQm/mQCc1XKMotweN540zkOcjn/tQnHlsRtW0FbOWbn6bDJY6uFItP9Zb4fsIwoT+JKijidqsauEYKrGoQ2Fb0x/cO4128i3ojXXfFzNsPVP7e8tBX//cotBhOOGWuKxdizfXddUzwJkRrp1BwXJ1hL4CQUJfZyRIlNGbJ74HP7m4T4F0UeF6t+2dI+K+4NUoBBM8MQOe3Xpsj8YHGMZ/3keOPyieBAbPpVQ0d73siZvpF0PfW9tf/o4eV6LNQJ1+YiLa3hgnAAAAAQAAAAAAAQAAAABMdGxzZmxhZ3MweDAwMDAwMDAwOmRhc2gucGxvdGx5LmNvbTo0NDNecGFydGl0aW9uS2V5PSUyOGh0dHBzJTJDcGxvdGx5LmNvbSUyOQAA request-method GET response-head HTTP/1.1 200 OK
+Report-To: {"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713694607&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&s=PtI7jl6CR3eKKHW7AHOfq%2BmQInL%2FariDTyZ9ZxDyB8Q%3D"}]}
+Reporting-Endpoints: heroku-nel=https://nel.heroku.com/reports?ts=1713694607&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&s=PtI7jl6CR3eKKHW7AHOfq%2BmQInL%2FariDTyZ9ZxDyB8Q%3D
+Nel: {"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}
+Server: gunicorn
+Date: Sun, 21 Apr 2024 10:16:47 GMT
+Content-Disposition: inline; filename=dashAgGridComponentFunctions.js
+Content-Type: application/javascript; charset=utf-8
+Content-Length: 25715
+Last-Modified: Wed, 17 Apr 2024 15:02:17 GMT
+Cache-Control: no-cache
+Etag: "1713366137.0-25715-501027966"
+Via: 1.1 vegur
+ original-response-headers Report-To: {"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713694607&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&s=PtI7jl6CR3eKKHW7AHOfq%2BmQInL%2FariDTyZ9ZxDyB8Q%3D"}]}
+Reporting-Endpoints: heroku-nel=https://nel.heroku.com/reports?ts=1713694607&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&s=PtI7jl6CR3eKKHW7AHOfq%2BmQInL%2FariDTyZ9ZxDyB8Q%3D
+Nel: {"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}
+Connection: keep-alive
+Server: gunicorn
+Date: Sun, 21 Apr 2024 10:16:47 GMT
+Content-Disposition: inline; filename=dashAgGridComponentFunctions.js
+Content-Type: application/javascript; charset=utf-8
+Content-Length: 25715
+Last-Modified: Wed, 17 Apr 2024 15:02:17 GMT
+Cache-Control: no-cache
+Etag: "1713366137.0-25715-501027966"
+Via: 1.1 vegur
+ ctid 2 uncompressed-len 0 net-response-time-onstart 2175 net-response-time-onstop 2177   ds

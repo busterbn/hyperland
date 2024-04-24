@@ -1,0 +1,331 @@
+function debounce(fn, threshold) {
+    var timeout;
+    threshold = threshold || 300;
+    return function debounced() {
+        clearTimeout(timeout);
+        var args = arguments;
+        var _this = this;
+
+        function delayed() {
+            fn.apply(_this, args);
+        }
+        timeout = setTimeout(delayed, threshold);
+    };
+}
+
+function matchApp(searchValue) {
+    let package = document.querySelectorAll("main #search-items .app")
+    if (searchValue == "") {
+        package.forEach(function(el) {
+            el.style.display = "block"
+        })
+    } else {
+        package.forEach(function (el) {
+            el.style.display = "none"
+            if (el.querySelector(".data-search").textContent.toLocaleLowerCase().includes(searchValue)) {
+                el.style.display = "block"
+                lazyLoad()
+            }
+        })
+    }
+    let data = document.querySelector("#search-items").dataset.src
+    if (data.length != 0) {
+        const pkgsBtn = document.querySelector("#pkg-visibility")
+        if (document.querySelector("#search").value.length != 0) {
+            pkgsBtn.classList.remove("hide")
+        } else {
+            pkgsBtn.classList.add("hide")
+        }
+    }
+    setTimeout(function () {
+        window.scrollTo(0, 0)
+    }, 10);
+}
+
+function install(el) {
+   let packages = {
+       "snap": JSON.parse(localStorage["snap"]),
+       "flatpak": JSON.parse(localStorage["flatpak"]),
+       "package": JSON.parse(localStorage["package"]),
+       "appimage": JSON.parse(localStorage["appimage"])
+   }
+   let buildUrl = [];
+   for (let format in packages) {
+       for (let p of packages[format]) {
+        buildUrl.push(format + "=" + p)
+       }
+   }
+   url = buildUrl.join("&")
+   url = "web-pamac://" + url
+   el.href = url
+   let array = new Array()
+   localStorage.setItem("snap", [JSON.stringify(array)])
+   localStorage.setItem("flatpak", [JSON.stringify(array)])
+   localStorage.setItem("package", [JSON.stringify(array)])
+   localStorage.setItem("appimage", [JSON.stringify(array)])
+   rebuildInstall()
+}
+
+function rebuildInstall() {
+    let formats = ["package", "snap", "flatpak", "appimage"]
+    let install = document.querySelector("#install-list")
+    let total_items = install.querySelector("#items-count")
+    let items_count = 0
+    for (let format of formats) {
+        let data = JSON.parse(localStorage.getItem(format))
+        if (data.length != 0) {
+            let container = `
+            <span class="${format}">
+                <h6>${format.replace(/^\w/, (first) => first.toUpperCase())}</h6>
+                <form id="${format}" action="#"></form>
+            </span>
+            `
+            items_count += data.length
+            let drop_down = document.querySelector(".collapsible-body")
+            let template_container = document.querySelector(`.${format}`)
+            if (!template_container) {
+                drop_down.insertAdjacentHTML('beforeend', container)
+            }
+            let pkg_format = install.querySelector(`#${format}`)
+            pkg_format.innerHTML = ""
+            for (pkg of data) {
+                let template = `
+                    <p>
+                    <label>
+                        <input class="install-checkbox" data-pkg="${pkg}" data-format="${format}" data-title="" type="checkbox" checked="checked" onclick="remove_install(this)" />
+                        <span>${pkg}</span>
+                    </label>
+                    </p>
+                    `
+                pkg_format.insertAdjacentHTML('beforeend', template)
+            }
+        } else {
+            let template_container = document.querySelector(`.${format}`)
+            if (template_container) {
+                template_container.remove()
+            }
+        }
+        
+    }
+    total_items.textContent = items_count
+    if (items_count != 0) {
+        install.style.display = "block"
+    } else {
+        install.style.display = "none"
+    }
+}
+
+function remove_install(el) {
+    if (!el.checked) {
+        let data = JSON.parse(localStorage[`${el.dataset.format}`])
+        let newData = data.filter(function(f) { return f !== `${el.dataset.pkg}` })
+        localStorage.setItem(el.dataset.format, JSON.stringify(newData))
+        M.toast({html: `<span class="pink-text">${el.dataset.pkg}&nbsp</span> removed from install.`, displayLength: 1200})
+        rebuildInstall()
+    }
+}
+
+function addApp(el) {
+    let pkg = el.dataset.pkg
+    let data = JSON.parse(localStorage[`${el.dataset.format}`])
+    if (!data.includes(pkg)) {
+        data.push(`${pkg}`)
+        localStorage.setItem(`${el.dataset.format}`, JSON.stringify(data))
+        M.toast({html: `<span class="pink-text">${pkg}&nbsp</span> added to install.`, displayLength: 1200})
+    } else {
+        M.toast({html: `<span class="pink-text">${pkg}&nbsp</span> already in install list.`, displayLength: 1200})
+    }
+
+   rebuildInstall()
+}
+
+function remove404Images(el) {
+    let colToRemove = el.parentElement.parentElement
+    let row = colToRemove.parentElement
+    let colToEnlarge = row.querySelector(".col")
+    if (colToEnlarge.classList.contains("s8")) {
+        colToEnlarge.classList.remove("s8")
+        colToEnlarge.classList.add("s12")        
+    }
+    colToRemove.remove()
+}
+
+function pulse() {
+    this.classList.remove("pulse")
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+    if (document.querySelector("#btn-up")) {
+        document.querySelector("#btn-up").addEventListener('click', function () {
+            window.scroll(0, 0)
+        })
+    }
+    
+    let content = document.querySelector("main")
+    let sidenav = document.querySelector(".sidenav")
+    document.querySelector(".toggle-arrow").addEventListener('click', function () {
+        if (sidenav.classList.contains("open")) {
+            sidenav.classList.remove("open")
+            content.classList.remove("nav-open")
+        } else {
+            sidenav.classList.add("open")
+            content.classList.add("nav-open")    }
+    })
+    document.querySelector("main").addEventListener("click", function() {
+        collapsibleInstance.close()
+        sidenav.classList.remove("open")
+        content.classList.remove("nav-open")
+    })
+    let modals = document.querySelectorAll('.modal');
+    let modalInstances = M.Modal.init(modals);
+    let tooltips = document.querySelectorAll('.tooltipped');
+    let tooltipInstances = M.Tooltip.init(tooltips);
+    let materialboxed = document.querySelectorAll('.materialboxed');
+    let materialboxedInstances = M.Materialbox.init(materialboxed);
+    let carousel = document.querySelectorAll('.carousel');
+    let carouselInstances = M.Carousel.init(
+        carousel, {
+        fullWidth: true,
+        indicators: true
+    });
+
+    var collapsible = document.querySelector('.collapsible');
+    var collapsibleInstance = M.Collapsible.init(collapsible, {
+    accordion: false
+    });
+
+    collapsible.querySelector("#install-btn").addEventListener("click", pulse)
+    collapsible.querySelector("#install-btn").addEventListener("touchstart", pulse)
+    document.querySelector(".toggle-arrow").addEventListener("click", pulse)
+    document.querySelector(".toggle-arrow").addEventListener("touchstart", pulse)
+
+    if (document.body.classList.contains("search")) {
+        document.querySelector('#search').addEventListener('keyup', debounce(function () {
+            let searchValue = this.value.toLocaleLowerCase()
+            matchApp(searchValue)
+        }, 1200))
+
+        document.querySelector("#clear-search").addEventListener('click', function() {
+            document.querySelector("#search").value = ""
+            let app = document.querySelectorAll(".app")
+            app.forEach(function (el) {
+                el.style.display = "block"
+            });
+            lazyLoad()
+        })
+        let searchData = document.querySelector('#search-items')
+        let autocomplete = document.querySelector('.autocomplete');
+        function parseData() {
+            let data = searchData.dataset.src
+            if (!data) {
+                data = "{}"
+            } 
+            return JSON.parse(data)
+        }
+        let options = {
+            limit: 100,
+            data: parseData(),
+            onAutocomplete: function (val) {
+                let value = document.querySelector('input.autocomplete').value
+                for (key in options.data) {
+                    if (value == key) {
+                        if (location.pathname == "/snaps") {
+                            var format = "snap"
+                        } else if (location.pathname == "/flatpaks") {
+                            var format = "flatpak"
+                        } else if (location.pathname == "/applications") {
+                            var format = "package"
+                        } else if (location.pathname == "/appimage") {
+                            var format = "appimage"
+                        }
+                        let link = window.open(`/${format}/${key}`, "_blank");
+                        link.location;
+                    }
+                }
+            },
+        }
+        let autocompleteInstances = M.Autocomplete.init(autocomplete, options);
+        let btn = document.querySelector(".autocomplete-content")
+        btn.classList.add("hide")
+        document.querySelector("#pkg-visibility").addEventListener("click", function() {
+            if (this.textContent == "visibility") {
+                this.textContent = "visibility_off"
+                btn.classList.add("hide")
+            } else {
+                this.textContent = "visibility"
+                btn.classList.remove("hide")
+            }
+        })
+    }
+    let lazyImages = [].slice.call(document.querySelectorAll("img.lazyload"));
+    let active = false;
+
+    lazyLoad = function() {
+        if (active === false) {
+            active = true;
+            setTimeout(function() {
+                lazyImages.forEach(function(lazyImage) {
+                    if ((lazyImage.getBoundingClientRect().top <= window.innerHeight && lazyImage.getBoundingClientRect().bottom >= 0) && getComputedStyle(lazyImage).display !== "none") {
+                        lazyImage.src = lazyImage.dataset.src;
+                        //lazyImage.classList.remove("lazyload");
+                        lazyImages = lazyImages.filter(function(image) {
+                            return image !== lazyImage;
+                        });
+                        if (lazyImages.length === 0) {
+                            document.removeEventListener("scroll", lazyLoad);
+                            window.removeEventListener("resize", lazyLoad);
+                            window.removeEventListener("orientationchange", lazyLoad);
+                        }
+                    }
+                });
+                active = false;
+            }, 200);
+        }
+    };
+    document.addEventListener("scroll", lazyLoad);
+    window.addEventListener("resize", lazyLoad);
+    window.addEventListener("orientationchange", lazyLoad);
+    window.addEventListener('pageshow', lazyLoad);
+    document.addEventListener("click", function(event) {
+        console.log(document.querySelector("#search").value)
+        const pkgsBtn = document.querySelector("#pkg-visibility")
+        let data = document.querySelector("#search-items").dataset.src
+
+        if (event.target.id != "search" || document.querySelector("#search").value.length === 0) {
+            pkgsBtn.classList.add("hide")
+        } else if (event.target.id == "search" && data.length != 0){
+            pkgsBtn.classList.remove("hide")
+        }
+    })
+    
+    let pkg_formats = ["snap", "flatpak", "package", "appimage"]
+    for (let format of pkg_formats) {
+        if (localStorage.getItem(format) === null) {
+            let array = new Array()
+            localStorage.setItem(format, JSON.stringify(array))
+        } else {
+            rebuildInstall()
+        }
+    }
+})8Rj∏Y      f(¨*f(¨*F–WÚ       \    O^partitionKey=%28https%2Cmanjaro.org%29,:https://software.manjaro.org/static/js/discover.js strongly-framed 1 security-info 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 request-method GET response-head HTTP/2 200 
+content-type: application/javascript; charset=utf-8
+content-length: 11920
+last-modified: Mon, 05 Jun 2023 14:29:34 GMT
+etag: "1685975374.0-11920-3282901812"
+strict-transport-security: max-age=15768000; includeSubDomains
+server: nginx/1.18.0 (Ubuntu)
+date: Wed, 24 Apr 2024 06:52:26 GMT
+content-disposition: inline; filename=discover.js
+cache-control: no-cache
+X-Firefox-Spdy: h2
+ original-response-headers server: nginx/1.18.0 (Ubuntu)
+date: Tue, 23 Apr 2024 18:03:41 GMT
+content-type: application/javascript; charset=utf-8
+content-length: 11920
+content-disposition: inline; filename=discover.js
+last-modified: Mon, 05 Jun 2023 14:29:34 GMT
+cache-control: no-cache
+etag: "1685975374.0-11920-3282901812"
+strict-transport-security: max-age=15768000; includeSubDomains
+X-Firefox-Spdy: h2
+ ctid 2 uncompressed-len 0 net-response-time-onstart 29 net-response-time-onstop 31   .ê

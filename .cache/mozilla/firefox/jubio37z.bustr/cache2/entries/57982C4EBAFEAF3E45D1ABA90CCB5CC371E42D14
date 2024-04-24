@@ -1,0 +1,443 @@
+diff name:ublock-annoyances lines:6 checksum:de3041a30a
+d3 2
+a4 2
+! Last modified: Tue, 23 Apr 2024 12:22:44 +0000
+! Diff-Path: ../patches/2024.4.23.986.patch#ublock-annoyances
+a739 1
+eurobaustoff.com##+js(trusted-set-local-storage-item, ccm_consent, '{"/":{"gen":2,"ucid":"1","consent":true,"embeddings":["1e76acf","8ed8d9a","b429e86","f22e6ed","0b25af3","6079a42"],"created":"$currentDate$","updated":"$currentDate$","clickedButton":"acceptAll","iframeConsentDomains":[],"tcf":{"p":[],"lip":[],"sf":[],"v":[],"liv":[],"gad":[]},"lang":"de_DE"}}' )
+diff name:ublock-badware lines:14 checksum:16f3dca711
+d3 2
+a4 2
+! Last modified: Tue, 23 Apr 2024 03:57:11 +0000
+! Diff-Path: ../patches/2024.4.23.986.patch#ublock-badware
+a3091 3
+||mygeomanager.org^$all
+||livedashboardkit.info^$all
+/^https:\/\/[a-z]{10,}\.[a-z]{3,4}\/(?:engine|track)-[a-f0-9]{8}\.js$/$script,3p,to=~edu|~gov,header=vary:/^referer\,accept-encoding/i
+a3146 1
+||emailfacebooksecurity.pages.dev^$all
+a3194 1
+||mybluehost.me/*/CHFINAL/$doc
+a3201 1
+||blocknoderesolve.pages.dev^$all,to=~walletconnect.com
+diff name:ublock-filters lines:24 checksum:4c432918fe
+d3 2
+a4 2
+! Last modified: Tue, 23 Apr 2024 16:25:24 +0000
+! Diff-Path: ../patches/2024.4.23.986.patch#ublock-filters
+d5677 6
+d9489 1
+a9489 1
+@@||qwant.com^$ping,1p
+d9907 1
+a9907 1
+||cdn.pranmcpkx.com^$script,3p,redirect-rule=noopjs
+a9908 1
+pandadevelopment.net##+js(no-fetch-if, adsbygoogle)
+a21068 1
+@@||oninet.ne.jp/sakigakesoft/s/holmes-geojson.js$1p,strict1p
+d21072 1
+a21072 4
+oninet.ne.jp##a[href^="https://hb.afl.rakuten.co.jp/hsc/"]
+oninet.ne.jp##a[href^="https://hb.afl.rakuten.co.jp/hsc/"] ~ img[src="qr-rakuten-travel-logo.png"]
+oninet.ne.jp##a[href^="https://www.amazon.co.jp/dp/"]
+oninet.ne.jp##a[href^="https://www.amazon.co.jp/dp/"] ~ img[src="qr-amazon-logo.png"]
+d21290 1
+a21290 1
+7daystodiemods.com,7review.com,asupan.me,avitter.net,bi-girl.net,carryflix.icu,dark5k.com,fairyhorn.cc,gojo2.com,gorecenter.com,huitranslation.com,javhdvideo.org,nakiny.com,nemumemo.com,peppe8o.com,phodoi.vn,savingsomegreen.com,tutsnode.*##+js(aopr, b2a)
+diff name:ublock-privacy lines:3 checksum:57f48ea20e
+d4 1
+a4 1
+! Diff-Path: ../patches/2024.4.23.986.patch#ublock-privacy
+diff name:ublock-quick-fixes lines:19 checksum:3b278dcf1c
+d3 2
+a4 2
+! Last modified: Tue, 23 Apr 2024 16:18:03 +0000
+! Diff-Path: ../patches/2024.4.23.986.patch#ublock-quick-fixes
+d109 7
+d146 1
+a146 4
+in-jpn.com##body > p[id]:remove-attr(id)
+in-jpn.com,oninet.ne.jp,xth.jp##body:style(color: #000 !important;)
+in-jpn.com#@#[style]:empty
+in-jpn.com,oninet.ne.jp,xth.jp##body div:matches-css(position: fixed):matches-css(background-color: /rgb/):matches-css(z-index: /\d+/)
+d148 1
+a148 1
+||in-jpn.com^$script,replace=/function myFunc[\s\S\n]+?false;[\s\S\n]+?\}[\s\S\n]+?myFunc\(\); \}[\s\S\n]+?\}//
+a149 1
+@@||oninet.ne.jp/sakigakesoft/s/holmes-geojson.js$1p,strict1p
+a152 2
+/stats/events$badfilter
+/stats/events$xmlhttprequest
+diff name:ublock-unbreak lines:9 checksum:de1fc7ea88
+d3 2
+a4 2
+! Last modified: Tue, 23 Apr 2024 09:47:01 +0000
+! Diff-Path: ../patches/2024.4.23.986.patch#ublock-unbreak
+d665 1
+a665 1
+@@||t.eloqua.com^$xhr,domain=natera.com
+a2542 1
+||appboycdn.com^$script,3p,redirect-rule=noopjs,domain=animates.co.nz
+diff name:easylist lines:299 checksum:e07a9eac2c
+d4 2
+a5 2
+! Last modified: Tue, 23 Apr 2024 15:56:20 +0000
+! Diff-Path: ../patches/2024.4.23.986.patch#easylist
+a1040 1
+/script/liB1.js
+a1049 1
+/script/xxAG1.js
+a4241 1
+###bottom-adhesion
+a18565 1
+||84f101d1bb.com^
+a18610 1
+||9119fa4031.com^
+a19695 1
+||aerialsargle.top^
+a19727 1
+||affabilitydisciple.com^
+a19960 1
+||aickeebsi.com^
+a20160 1
+||algiczonated.top^
+a20761 1
+||appealtime.com^
+a20973 1
+||aromamidland.com^
+a21172 1
+||assuagefaithfullydesist.com^
+a21414 1
+||aurdoagnoak.net^
+a21614 1
+||axsnuwqg.com^
+a21734 1
+||b8ce2eba60.com^
+a21862 1
+||balmexhibited.com^
+a21931 1
+||bargedale.com^
+a21973 1
+||basisvoting.com^
+a22179 1
+||beepoven.com^
+a22856 1
+||bluffybluffysterility.com^
+a22970 1
+||bofhlzu.com^
+a22981 1
+||boiledperseverance.com^
+a23078 1
+||bootharchie.com^
+a23336 1
+||brideshieldstaircase.com^
+a23763 1
+||bywtdaelbjbhz.com^
+a24995 1
+||clogcheapen.com^
+a25190 1
+||cohereoverdue.com^
+a25217 1
+||colhickcommend.com^
+a25712 1
+||cottoncabbage.com^
+a25717 1
+||coulaupsoa.net^
+a25860 1
+||cradspbsdarltng.com^
+a26125 1
+||cupulaeveinal.top^
+a26554 1
+||dctkubltpbtt.com^
+a26576 1
+||deafening-benefit.pro^
+a26762 1
+||deliriumalbumretreat.com^
+a27635 1
+||doomdoleinto.com^
+a27761 1
+||dpyaxzpudhp.com^
+a27772 1
+||dqrpajecblodtqd.com^
+a27978 1
+||dualp.xyz^
+a28103 1
+||dwellsew.com^
+a28290 1
+||eatasesetitoefa.info^
+a29258 1
+||ethicbecamecarbonate.com^
+a29453 1
+||excessivelybeveragebeat.com^
+a29982 1
+||fealerector.top^
+a30065 1
+||fellrummageunpleasant.com^
+a30508 1
+||flossdiversebates.com^
+a30517 1
+||flowerbooklet.com^
+a30713 1
+||forcingclinch.com^
+a31116 1
+||fuelpearls.com^
+a32107 1
+||goatsnulls.com^
+a32574 1
+||gsnqhdo.com^
+a32765 1
+||habitualexecute.com^
+a32776 1
+||hadmiredinde.info^
+a33156 1
+||heiressscore.com^
+a33212 1
+||hercockremarke.info^
+a33591 1
+||holgateperfect.com^
+a33755 1
+||hourstreeadjoining.com^
+a33903 1
+||huhaxvawgwa.com^
+a34235 1
+||igainareputaon.info^
+a34564 1
+||inbowedtroak.top^
+a34620 1
+||indictmentparliament.com^
+a34687 1
+||influencesow.com^
+a34722 1
+||inhaleecstatic.com^
+a34851 1
+||instantlyallergic.com^
+a36082 1
+||justifiedcramp.com^
+a36253 1
+||kazqkjyztvv.com^
+a36337 1
+||keramiceoan.com^
+a36387 1
+||kgfrstw.com^
+a36431 1
+||kiiysgjmuy.com^
+a36620 1
+||knowmakeshalfmoon.com^
+a37207 1
+||leafletsmakesunpleasant.com^
+a37410 1
+||liabilitygenerator.com^
+a38568 1
+||marchingdishonest.com^
+a38607 1
+||marshakhula.top^
+a38655 1
+||mathsdelightful.com^
+a39033 1
+||mf233y3dg6n.shop^
+a39230 1
+||miserdiscourteousromance.com^
+a39275 1
+||miuo.cloud^
+a39665 1
+||mourntrick.com^
+a39952 1
+||mxmezfyjgw.com^
+a40078 1
+||nadruphoordy.xyz^
+a40691 1
+||nlwjdxsa.com^
+a40930 1
+||nowhisho.net^
+a41084 1
+||nunearn.com^
+a41182 1
+||nzwxemqwpv.com^
+a41308 1
+||oboitlwjjvkkd.com^
+a41364 1
+||occndvwqxhgeicg.xyz^
+a41850 1
+||onnnuvtikmzy.com^
+a42556 1
+||ozlenbl.com^
+a43040 1
+||peechohovaz.xyz^
+a43058 1
+||peevishaboriginalzinc.com^
+a43296 1
+||pgorttohwo.info^
+a43484 1
+||piercepavilion.com^
+a44594 1
+||prosedisavow.com^
+a45608 1
+||qylmbemvllzrb.top^
+a45774 1
+||rarestkhatin.top^
+a45898 1
+||reallywelfarestun.com^
+a45996 1
+||reconnectconsistbegins.com^
+a46009 1
+||recovernosebleed.com^
+a46603 1
+||rheneapfg.com^
+a46660 1
+||ridleward.info^
+a46927 1
+||rootcaptawed.com^
+a47723 1
+||sculptorpound.com^
+a47757 1
+||sealkiebannets.top^
+a47944 1
+||seraglisneak.top^
+a48343 1
+||shticksyahuna.com^
+a48641 1
+||slaughterscholaroblique.com^
+a48775 1
+||smittenkick.top^
+a49088 1
+||sowfairytale.com^
+a49406 1
+||staerlcmplks.xyz^
+a50087 1
+||surrounddiscord.com^
+a50263 1
+||symptomprominentfirewood.com^
+a50558 1
+||teamshilarious.com^
+a50729 1
+||textilewhine.com^
+a51367 1
+||toolspaflinch.com^
+a51371 1
+||toopsoug.net^
+a52033 1
+||tutorlylaggard.top^
+a52993 1
+||uzibhigtekn.com^
+a53278 1
+||verifiablevolume.com^
+a53309 1
+||vestigeencumber.com^
+a54107 1
+||wavedprincipal.com^
+a54436 1
+||whickgiunta.com^
+a54826 1
+||wonnauseouswheel.com^
+a54877 1
+||workplacenotchperpetual.com^
+a55582 1
+||yawsbvoby.com^
+a55662 1
+||ygkwjd.xyz^
+a55717 1
+||ykakassg.com^
+a56074 1
+||zenaot.xyz^
+a56098 1
+||zevwkbzwkbawz.top^
+a58229 1
+||f6176563.site^$document,popup
+a58603 1
+||affabilitydisciple.com^$popup
+a59184 1
+||correlationcocktailinevitably.com^$popup
+a59425 1
+||eatasesetitoefa.info^$popup
+a59629 1
+||forcingclinch.com^$popup
+a61819 1
+||toopsoug.net^$popup
+a65272 1
+||freighter-prod01.narvar.com^$image
+a67111 1
+fxempire.com###header-ads-block
+d67215 1
+a67215 1
+12tomatoes.com,allwomenstalk.com,bloomberg.com,datpiff.com,logotv.com,newcartestdrive.com,news.sky.com,news.tvguide.co.uk,onthesnow.ca,onthesnow.co.nz,onthesnow.co.uk,onthesnow.com,penny-arcade.com,publishersweekly.com,skysports.com,thedrinknation.com,theserverside.com###leaderboard
+d67887 1
+a67887 2
+androidauthority.com##._--_-___Pb
+androidauthority.com##._--_-___ub
+a69393 1
+newcastleworld.com##.helper__DesktopAdContainer-sc-12ggaoi-1
+a69651 1
+etonline.com##.leader-inc
+a70023 1
+etonline.com##.omni-skybox-plus-stick-placeholder
+d71319 1
+a71319 1
+dailynews.lk,fxempire.com,german-way.com,issuu.com,londonnewsonline.co.uk,power987.co.za,qsaltlake.com,tfetimes.com##[height="250"]
+d71322 1
+a71322 1
+cryptofeeds.news,fxempire.com,issuu.com,power987.co.za##[height="600"]
+a71992 1
+fxempire.com##span[style="user-select:none"]
+diff name:easyprivacy lines:13 checksum:da5f5d3f25
+d4 2
+a5 2
+! Last modified: Tue, 23 Apr 2024 14:08:18 +0000
+! Diff-Path: ../patches/2024.4.23.986.patch#easyprivacy
+d2083 1
+a2083 1
+/stats/events$xmlhttprequest
+a6135 1
+||analyzecorona.com^
+a49810 1
+||wrtn.ai/proxy/client/metrics
+a50707 1
+@@||josiad.ns.nl/DG/DEFAULT/$xmlhttprequest
+€„/Û@»      f'óf'óFÏ&cf'ô[   N    ~FETCH,:https://ublockorigin.github.io/uAssetsCDN/patches/2024.4.22.1221.patch strongly-framed 1 security-info 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 request-method GET request-Accept-Encoding gzip, deflate, br response-head HTTP/2 200 
+server: GitHub.com
+content-type: application/octet-stream
+permissions-policy: interest-cohort=()
+x-origin-cache: HIT
+last-modified: Tue, 23 Apr 2024 16:26:53 GMT
+access-control-allow-origin: *
+etag: "6627e14d-2243"
+expires: Tue, 23 Apr 2024 16:46:50 GMT
+cache-control: max-age=600
+x-proxy-cache: HIT
+x-github-request-id: 79CE:260522:5B28777:5D1D9AB:6627E3A6
+accept-ranges: bytes
+date: Tue, 23 Apr 2024 17:42:32 GMT
+via: 1.1 varnish
+age: 261
+x-served-by: cache-cph2320038-CPH
+x-cache: HIT
+x-cache-hits: 3
+x-timer: S1713894152.266822,VS0,VE0
+vary: Accept-Encoding
+x-fastly-request-id: 5a695d7b75ac24c40f15ac3560c6522652c426b9
+content-length: 8771
+X-Firefox-Spdy: h2
+ original-response-headers server: GitHub.com
+content-type: application/octet-stream
+permissions-policy: interest-cohort=()
+x-origin-cache: HIT
+last-modified: Tue, 23 Apr 2024 16:26:53 GMT
+access-control-allow-origin: *
+etag: "6627e14d-2243"
+expires: Tue, 23 Apr 2024 16:46:50 GMT
+cache-control: max-age=600
+x-proxy-cache: HIT
+x-github-request-id: 79CE:260522:5B28777:5D1D9AB:6627E3A6
+accept-ranges: bytes
+date: Tue, 23 Apr 2024 17:42:32 GMT
+via: 1.1 varnish
+age: 261
+x-served-by: cache-cph2320038-CPH
+x-cache: HIT
+x-cache-hits: 3
+x-timer: S1713894152.266822,VS0,VE0
+vary: Accept-Encoding
+x-fastly-request-id: 5a695d7b75ac24c40f15ac3560c6522652c426b9
+content-length: 8771
+X-Firefox-Spdy: h2
+ ctid 1 net-response-time-onstart 51 net-response-time-onstop 55   "C

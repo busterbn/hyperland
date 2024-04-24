@@ -1,0 +1,1037 @@
+var dagfuncs = (window.dashAgGridFunctions = window.dashAgGridFunctions || {});
+
+dagfuncs.Round = function (v, a = 2) {
+    return Math.round(v * 10 ** a) / 10 ** a;
+};
+
+dagfuncs.toFixed = function (v, a = 2) {
+    return Number(v).toFixed(a);
+};
+
+dagfuncs.addEdits = function (params) {
+    if (params.data.changes) {
+        var newList = JSON.parse(params.data.changes);
+        newList.push(params.colDef.field);
+        params.data.changes = JSON.stringify(newList);
+    } else {
+        params.data.changes = JSON.stringify([params.colDef.field]);
+    }
+    params.data[params.colDef.field] = params.newValue;
+    return true;
+};
+
+dagfuncs.highlightEdits = function (params) {
+    if (params.data.changes) {
+        if (JSON.parse(params.data.changes).includes(params.colDef.field)) {
+            return true;
+        }
+    }
+    return false;
+};
+
+// used in the rendering - Custom Function Value Formatters page
+dagfuncs.Intl = Intl;
+
+dagfuncs.EUR = function (number) {
+    return Intl.NumberFormat("de-DE", {
+        style: "currency",
+        currency: "EUR",
+    }).format(number);
+};
+
+dagfuncs.JPY = function (number) {
+    return Intl.NumberFormat("ja-JP", {
+        style: "currency",
+        currency: "JPY",
+    }).format(number);
+};
+
+dagfuncs.USD = function (number) {
+    return Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    }).format(number);
+};
+
+dagfuncs.CAD = function (number) {
+    return Intl.NumberFormat("en-CA", {
+        style: "currency",
+        currency: "CAD",
+        currencyDisplay: "code",
+    }).format(number);
+};
+
+dagfuncs.PercentageFilna = function (number, filna = "") {
+    if (isNaN(number)) {
+        return filna;
+    }
+    return Intl.NumberFormat("en-US", {style: "percent"}).format(number);
+};
+
+dagfuncs.MoneyFilna = function (number, filna = "") {
+    if (isNaN(number)) {
+        return filna;
+    }
+    return Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    }).format(number);
+};
+// END rendering - Custom Function Value Formatters page
+
+// used in the Enterprise Aggregation Custom Functions example
+
+dagfuncs.ratioValueGetter = function (params) {
+    if (!(params.node && params.node.group)) {
+        // no need to handle group levels - calculated in the 'ratioAggFunc'
+        return createValueObject(params.data.gold, params.data.silver);
+    }
+};
+dagfuncs.ratioAggFunc = function (params) {
+    let goldSum = 0;
+    let silverSum = 0;
+    params.values.forEach((value) => {
+        if (value && value.gold) {
+            goldSum += value.gold;
+        }
+        if (value && value.silver) {
+            silverSum += value.silver;
+        }
+    });
+    return createValueObject(goldSum, silverSum);
+};
+
+function createValueObject(gold, silver) {
+    return {
+        gold: gold,
+        silver: silver,
+        toString: () => `${gold && silver ? gold / silver : 0}`,
+    };
+}
+
+dagfuncs.ratioFormatter = function (params) {
+    if (!params.value || params.value === 0) return "";
+    return "" + Math.round(params.value * 100) / 100;
+};
+
+// used in the cell editor example
+
+dagfuncs.DatePicker = class {
+    // gets called once before the renderer is used
+    init(params) {
+        // create the cell
+        this.eInput = document.createElement("input");
+        this.eInput.value = params.value;
+        this.eInput.classList.add("ag-input");
+        this.eInput.style.height = "var(--ag-row-height)";
+        this.eInput.style.fontSize = "calc(var(--ag-font-size) + 1px)";
+
+        // https://jqueryui.com/datepicker/
+        $(this.eInput).datepicker({
+            dateFormat: "dd/mm/yy",
+            onSelect: () => {
+                this.eInput.focus();
+            },
+        });
+    }
+
+    // gets called once when grid ready to insert the element
+    getGui() {
+        return this.eInput;
+    }
+
+    // focus and select can be done after the gui is attached
+    afterGuiAttached() {
+        this.eInput.focus();
+        this.eInput.select();
+    }
+
+    // returns the new value after editing
+    getValue() {
+        return this.eInput.value;
+    }
+
+    // any cleanup we need to be done here
+    destroy() {
+        // but this example is simple, no cleanup, we could
+        // even leave this method out as it's optional
+    }
+
+    // if true, then this editor will appear in a popup
+    isPopup() {
+        // and we could leave this method out also, false is the default
+        return false;
+    }
+};
+
+// used in the tree data example
+dagfuncs.getDataPath = function (data) {
+    return data.orgHierarchy;
+};
+
+// used in cell editors dynamic options example
+dagfuncs.dynamicOptions = function (params) {
+    const selectedCountry = params.data.country;
+    if (selectedCountry === "United States") {
+        return {
+            values: ["Boston", "Chicago", "San Francisco"],
+        };
+    } else {
+        return {
+            values: ["Montreal", "Vancouver", "Calgary"],
+        };
+    }
+};
+
+// Used in the conditional rendering example
+dagfuncs.moodOrGender = function (params) {
+    var dagcomponentfuncs = window.dashAgGridComponentFunctions;
+    const moodDetails = {
+        component: dagcomponentfuncs.MoodRenderer,
+    };
+    const genderDetails = {
+        component: dagcomponentfuncs.GenderRenderer,
+    };
+    if (params.data) {
+        if (params.data.type === "gender") return genderDetails;
+        else if (params.data.type === "mood") return moodDetails;
+    }
+    return undefined;
+};
+
+// Custom number input - used in Editing/cell editors example
+dagfuncs.NumberInput = class {
+    // gets called once before the renderer is used
+    init(params) {
+        // create the cell
+        this.eInput = document.createElement("input");
+        this.eInput.value = params.value;
+        this.eInput.style.height = "var(--ag-row-height)";
+        this.eInput.style.fontSize = "calc(var(--ag-font-size) + 1px)";
+        this.eInput.style.borderWidth = 0;
+        this.eInput.style.width = "95%";
+        this.eInput.type = "number";
+        this.eInput.min = params.min;
+        this.eInput.max = params.max;
+        this.eInput.step = params.step || "any";
+        this.eInput.required = params.required;
+        this.eInput.placeholder = params.placeholder || "";
+        this.eInput.name = params.name;
+        this.eInput.disabled = params.disabled;
+        this.eInput.title = params.title || "";
+    }
+
+    // gets called once when grid ready to insert the element
+    getGui() {
+        return this.eInput;
+    }
+
+    // focus and select can be done after the gui is attached
+    afterGuiAttached() {
+        this.eInput.focus();
+        this.eInput.select();
+    }
+
+    // returns the new value after editing
+    getValue() {
+        return this.eInput.value;
+    }
+
+    // any cleanup we need to be done here
+    destroy() {
+        // but this example is simple, no cleanup, we could
+        // even leave this method out as it's optional
+    }
+
+    // if true, then this editor will appear in a popup
+    isPopup() {
+        // and we could leave this method out also, false is the default
+        return false;
+    }
+};
+
+// Used in the cell editor dropdown examples
+//     filterArray function displays the label instead of the value when the dropdown options contain both
+//     Use this in a valueFormatter
+dagfuncs.filterArray = function (array, condition, col = null) {
+    newArray = array.filter((t) => condition.includes(t.value));
+    if (!col) {
+        return newArray;
+    } else {
+        var values = [];
+        newArray.map((t) => values.push(t[col]));
+        return values;
+    }
+};
+
+// cell editor custom component  - dmc.Select
+dagfuncs.DMC_Select = class {
+    // gets called once before the renderer is used
+    init(params) {
+        // create the cell
+        this.params = params;
+
+        // function for when Dash is trying to send props back to the component / server
+        var setProps = (props) => {
+            if (typeof props.value != typeof undefined) {
+                // updates the value of the editor
+                this.value = props.value;
+
+                // re-enables keyboard event
+                delete params.colDef.suppressKeyboardEvent;
+
+                // tells the grid to stop editing the cell
+                params.api.stopEditing();
+
+                // sets focus back to the grid's previously active cell
+                this.prevFocus.focus();
+            }
+        };
+        this.eInput = document.createElement("div");
+
+        // renders component into the editor element
+        ReactDOM.render(
+            React.createElement(window.dash_mantine_components.Select, {
+                data: params.options,
+                value: params.value,
+                setProps,
+                style: {width: params.column.actualWidth},
+                className: params.className,
+                clearable: params.clearable,
+                searchable: params.searchable || true,
+                creatable: params.creatable,
+                debounce: params.debounce,
+                disabled: params.disabled,
+                filterDataOnExactSearchMatch: params.filterDataOnExactSearchMatch,
+                limit: params.limit,
+                maxDropdownHeight: params.maxDropdownHeight,
+                nothingFound: params.nothingFound,
+                placeholder: params.placeholder,
+                required: params.required,
+                searchValue: params.searchValue,
+                shadow: params.shadow,
+                size: params.size,
+                style: params.style,
+                styles: params.styles,
+                switchDirectionOnFlip: params.switchDirectionOnFlip,
+                variant: params.variant,
+                zIndex: params.zIndex,
+            }),
+            this.eInput,
+        );
+
+        // allows focus event
+        this.eInput.tabIndex = "0";
+
+        // sets editor value to the value from the cell
+        this.value = params.value;
+    }
+
+    // gets called once when grid ready to insert the element
+    getGui() {
+        return this.eInput;
+    }
+
+    focusChild() {
+        // needed to delay and allow the component to render
+        setTimeout(() => {
+            var inp = this.eInput.getElementsByClassName("mantine-Select-input")[0];
+            inp.tabIndex = "1";
+
+            // disables keyboard event
+            this.params.colDef.suppressKeyboardEvent = (params) => {
+                const gridShouldDoNothing = params.editing;
+                return gridShouldDoNothing;
+            };
+            // shows dropdown options
+            inp.focus();
+        }, 100);
+    }
+
+    // focus and select can be done after the gui is attached
+    afterGuiAttached() {
+        // stores the active cell
+        this.prevFocus = document.activeElement;
+
+        // adds event listener to trigger event to go into dash component
+        this.eInput.addEventListener("focus", this.focusChild());
+
+        // triggers focus event
+        this.eInput.focus();
+    }
+
+    // returns the new value after editing
+    getValue() {
+        return this.value;
+    }
+
+    // any cleanup we need to be done here
+    destroy() {
+        // sets focus back to the grid's previously active cell
+        this.prevFocus.focus();
+    }
+};
+// end dmc.Select
+
+// Used in the row sorting custom comparator example
+dagfuncs.dateComparator = function (date1, date2) {
+    const date1Number = monthToComparableNumber(date1);
+    const date2Number = monthToComparableNumber(date2);
+    if (date1Number === null && date2Number === null) {
+        return 0;
+    }
+    if (date1Number === null) {
+        return -1;
+    }
+    if (date2Number === null) {
+        return 1;
+    }
+    return date1Number - date2Number;
+};
+
+// eg 29/08/2004 gets converted to 20040829
+function monthToComparableNumber(date) {
+    if (date === undefined || date === null) {
+        return null;
+    }
+    const yearNumber = parseInt(date.split("/")[2]);
+    const monthNumber = parseInt(date.split("/")[1]);
+    const dayNumber = parseInt(date.split("/")[0]);
+    return yearNumber * 10000 + monthNumber * 100 + dayNumber;
+}
+
+// end custom comparator example
+
+dagfuncs.postSort = function (params) {
+    const rowNodes = params.nodes;
+    // here we put Michael Phelps rows on top while preserving the sort order
+    let nextInsertPos = 0;
+    for (let i = 0; i < rowNodes.length; i++) {
+        const athlete = rowNodes[i].data ? rowNodes[i].data.athlete : undefined;
+        if (athlete === "Michael Phelps") {
+            rowNodes.splice(nextInsertPos, 0, rowNodes.splice(i, 1)[0]);
+            nextInsertPos++;
+        }
+    }
+};
+
+const hostCities = {
+    2000: "Sydney",
+    2004: "Athens",
+    2008: "Beijing",
+    2012: "London",
+};
+
+dagfuncs.rowDragText = function (params) {
+    const {year} = params.rowNode.data;
+    if (year in hostCities) {
+        return `${params.defaultTextValue} (${hostCities[year]} Olympics)`;
+    }
+    return params.defaultTextValue;
+};
+
+dagfuncs.athleteRowDragText = function (params) {
+    return `${params.rowNodes.length} athlete(s) selected`;
+};
+
+// Used in Styling Cells page - example 3 of Cell Shading Examples
+dagfuncs.heatMap = function (props) {
+    const {min, max} = props.colDef.cellRendererParams;
+    const val = props.value;
+
+    if (val > 0) {
+        g = 255;
+        r = b = 255 * (1 - val / max);
+    } else {
+        r = 255;
+        g = b = 255 * (1 - val / min);
+    }
+
+    return {
+        backgroundColor: "rgb(" + [r, g, b].join() + ")",
+        color: "black",
+    };
+};
+
+// Used in Row Pinning page - example Pinned Bottom Rows
+dagfuncs.rowPinningBottom = function (params) {
+    if (params.node.rowPinned) {
+        // Text of pinned row is bold for all columns
+        let style = {fontWeight: "bold"};
+
+        if (params.colDef.field === "country") {
+            // Add text size = 25 for "Average"
+            style["fontSize"] = 25;
+        } else if (["lifeExp", "pop", "gdpPercap"].includes(params.colDef.field)) {
+            // Add text color = blue for means
+            style["color"] = "#2186f4";
+        }
+
+        return {
+            component: window.dashAgGridComponentFunctions.RowPinningBottomComponent,
+            params: {style: style},
+        };
+    } else {
+        // rows that are not pinned don't use any cell renderer
+        return undefined;
+    }
+};
+
+/* Used in the Column Spanning page - example Configuring Column Spanning*/
+dagfuncs.colSpanningSimple = function (params) {
+    const country = params.data.country;
+    if (country === "Russia") {
+        // have all Russia cells in column country of width of 2 columns
+        return 2;
+    } else if (country === "United States") {
+        // have all United States cells in column country of width of 4 columns
+        return 4;
+    } else {
+        // all other rows should be just normal
+        return 1;
+    }
+};
+
+/* Used in the Column Spanning page - example Column Spanning Complex Example*/
+function isHeaderRow(params) {
+    return params.data.section === "big-title";
+}
+
+function isQuarterRow(params) {
+    return params.data.section === "quarters";
+}
+
+dagfuncs.janColSpan = function (params) {
+    if (isHeaderRow(params)) {
+        return 6;
+    } else if (isQuarterRow(params)) {
+        return 3;
+    } else {
+        return 1;
+    }
+};
+
+dagfuncs.aprColSpan = function (params) {
+    if (isQuarterRow(params)) {
+        return 3;
+    } else {
+        return 1;
+    }
+};
+// End Column Spanning page - example Column Spanning Complex Example
+
+/* Used in the Row Spanning page - example Row Spanning Simple Example*/
+dagfuncs.rowSpanningSimple = function (params) {
+    var athlete = params.data ? params.data.athlete : undefined;
+    if (athlete === "Aleksey Nemov") {
+        // have all Russia age columns width 2
+        return 2;
+    } else if (athlete === "Ryan Lochte") {
+        // have all United States column width 4
+        return 4;
+    } else {
+        // all other rows should be just normal
+        return 1;
+    }
+};
+
+/* Used in the Row Spanning page - example Row Spanning Complex Example*/
+dagfuncs.rowSpanningComplex = function (params) {
+    if (params.data.show) {
+        return 4;
+    } else {
+        return 1;
+    }
+};
+
+// used in the set filter sort filter list example
+dagfuncs.sortFilterList = function (a, b) {
+    var valA = a == null ? 0 : parseInt(a);
+    var valB = b == null ? 0 : parseInt(b);
+    if (valA === valB) return 0;
+    return valA > valB ? 1 : -1;
+};
+
+// used in the set filter value formatter example
+var COUNTRY_CODES = {
+    Ireland: "ie",
+    Luxembourg: "lu",
+    Belgium: "be",
+    Spain: "es",
+    France: "fr",
+    Germany: "de",
+    Sweden: "se",
+    Italy: "it",
+    Greece: "gr",
+    Iceland: "is",
+    Portugal: "pt",
+    Malta: "mt",
+    Norway: "no",
+    Brazil: "br",
+    Argentina: "ar",
+    Colombia: "co",
+    Peru: "pe",
+    Venezuela: "ve",
+    Uruguay: "uy",
+};
+
+dagfuncs.countryValueFormatter = function (value) {
+    return value + " (" + COUNTRY_CODES[value].toUpperCase() + ")";
+};
+
+// used in the set filter - provide filter values example
+var listOfDays = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+];
+dagfuncs.sortFilterListDays = function (a, b) {
+    var aIndex = a == null ? -1 : listOfDays.indexOf(a);
+    var bIndex = b == null ? -1 : listOfDays.indexOf(b);
+    if (aIndex === bIndex) return 0;
+    return aIndex > bIndex ? 1 : -1;
+};
+
+// used in set filter providing values async
+dagfuncs.filterParams = {
+    values: (params) => {
+        setTimeout(function () {
+            params.success(["value 1", "value 2"]);
+        }, 3000);
+    },
+};
+
+// used in set filters multiple values example
+dagfuncs.valueFormatterObj = function (params) {
+    return params.value
+        .map(function (animal) {
+            return animal.name;
+        })
+        .join(", ");
+};
+
+/* Used in the Full Width Row page - example Full Width Keyboard Navigation*/
+const GRID_CELL_CLASSNAME = "ag-full-width-row";
+
+const getAllFocusableElementsOf = (el) => {
+    return Array.from(
+        el.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        ),
+    ).filter((focusableEl) => {
+        return focusableEl.tabIndex !== -1;
+    });
+};
+
+function getEventPath(event) {
+    const path = [];
+    let currentTarget = event.target;
+    while (currentTarget) {
+        path.push(currentTarget);
+        currentTarget = currentTarget.parentElement;
+    }
+    return path;
+}
+
+dagfuncs.suppressKeyboardEvent = function (params) {
+    console.log(params);
+    const {key, shiftKey} = params.event;
+    const path = getEventPath(params.event);
+    const isTabForward = key === "Tab" && shiftKey === false;
+    const isTabBackward = key === "Tab" && shiftKey === true;
+    let suppressEvent = false;
+    // Handle cell children tabbing
+    if (isTabForward || isTabBackward) {
+        const eGridCell = path.find((el) => {
+            if (el.classList === undefined) {
+                return false;
+            }
+            return el.classList.contains(GRID_CELL_CLASSNAME);
+        });
+        if (!eGridCell) {
+            return suppressEvent;
+        }
+        const focusableChildrenElements = getAllFocusableElementsOf(eGridCell);
+        const lastCellChildEl =
+            focusableChildrenElements[focusableChildrenElements.length - 1];
+        const firstCellChildEl = focusableChildrenElements[0];
+        // Suppress keyboard event if tabbing forward within the cell and the current focused element is not the last child
+        if (isTabForward && focusableChildrenElements.length > 0) {
+            const isLastChildFocused =
+                lastCellChildEl && document.activeElement === lastCellChildEl;
+            if (!isLastChildFocused) {
+                suppressEvent = true;
+            }
+        }
+        // Suppress keyboard event if tabbing backwards within the cell, and the current focused element is not the first child
+        else if (isTabBackward && focusableChildrenElements.length > 0) {
+            const cellHasFocusedChildren =
+                eGridCell.contains(document.activeElement) &&
+                eGridCell !== document.activeElement;
+            // Manually set focus to the last child element if cell doesn't have focused children
+            if (!cellHasFocusedChildren) {
+                lastCellChildEl.focus();
+                // Cancel keyboard press, so that it doesn't focus on the last child and then pass through the keyboard press to
+                // move to the 2nd last child element
+                params.event.preventDefault();
+            }
+            const isFirstChildFocused =
+                firstCellChildEl && document.activeElement === firstCellChildEl;
+            if (!isFirstChildFocused) {
+                suppressEvent = true;
+            }
+        }
+    }
+    return suppressEvent;
+};
+
+// used in the Editing Setting Values example
+dagfuncs.valueSetterName = (params) => {
+    const fullName = params.newValue;
+    const nameSplit = fullName.split(" ");
+    const newFirstName = nameSplit[0];
+    const newLastName = nameSplit[1];
+    const data = params.data;
+    if (data.first_name !== newFirstName || data.last_name !== newLastName) {
+        data.first_name = newFirstName;
+        data.last_name = newLastName;
+        // return true to tell grid that the value has changed, so it knows
+        // to update the cell
+        return true;
+    } else {
+        // return false, the grid doesn't need to update
+        return false;
+    }
+};
+
+dagfuncs.valueSetterB = (params) => {
+    console.log("in valuesetterb");
+    const newVal = params.newValue;
+    const valueChanged = params.data.b !== newVal;
+    if (valueChanged) {
+        params.data.b = newVal;
+    }
+    return valueChanged;
+};
+
+dagfuncs.valueSetterCX = (params) => {
+    const newVal = params.newValue;
+    if (!params.data.c) {
+        params.data.c = {};
+    }
+    const valueChanged = params.data.c.x !== newVal;
+    if (valueChanged) {
+        params.data.c.x = newVal;
+    }
+    return valueChanged;
+};
+
+dagfuncs.valueSetterCY = (params) => {
+    const newVal = params.newValue;
+    if (!params.data.c) {
+        params.data.c = {};
+    }
+    const valueChanged = params.data.c.y !== newVal;
+    if (valueChanged) {
+        params.data.c.y = newVal;
+    }
+    return valueChanged;
+};
+// end
+
+// used in the number filter example
+dagfuncs.myNumberParser = (text) => {
+    return text === null ? null : parseFloat(text.replace(",", ".").replace("$", ""));
+}
+dagfuncs.myNumberFormatter = (value) => {
+    return value === null ? null : value.toString().replace(".", ",");
+}
+
+
+// used in the text filter custom example
+dagfuncs.athleteFilterParams = {
+    filterOptions: ["contains", "notContains"],
+    textFormatter: (r) => {
+        if (r == null) return null;
+        return r
+            .toLowerCase()
+            .replace(/[àáâãäå]/g, "a")
+            .replace(/æ/g, "ae")
+            .replace(/ç/g, "c")
+            .replace(/[èéêë]/g, "e")
+            .replace(/[ìíîï]/g, "i")
+            .replace(/ñ/g, "n")
+            .replace(/[òóôõö]/g, "o")
+            .replace(/œ/g, "oe")
+            .replace(/[ùúûü]/g, "u")
+            .replace(/[ýÿ]/g, "y");
+    },
+    debounceMs: 200,
+    maxNumConditions: 1,
+};
+
+function contains(target, lookingFor) {
+    return target && target.indexOf(lookingFor) >= 0;
+}
+
+dagfuncs.countryTextMatcher = ({value, filterText}) => {
+    const aliases = {
+        usa: "united states",
+        holland: "netherlands",
+        niall: "ireland",
+        sean: "south africa",
+        alberto: "mexico",
+        john: "australia",
+        xi: "china",
+    };
+    const literalMatch = contains(value, filterText || "");
+    return !!literalMatch || !!contains(value, aliases[filterText || ""]);
+};
+
+dagfuncs.dateFilterComparator = (filterLocalDateAtMidnight, cellValue) => {
+    const dateAsString = cellValue;
+
+    if (dateAsString == null) {
+        return 0;
+    }
+
+    // In the example application, dates are stored as dd/mm/yyyy
+    // We create a Date object for comparison against the filter date
+    const dateParts = dateAsString.split("/");
+    const year = Number(dateParts[2]);
+    const month = Number(dateParts[1]) - 1;
+    const day = Number(dateParts[0]);
+    const cellDate = new Date(year, month, day);
+
+    // Now that both parameters are Date objects, we can compare
+    if (cellDate < filterLocalDateAtMidnight) {
+        return -1;
+    } else if (cellDate > filterLocalDateAtMidnight) {
+        return 1;
+    }
+    return 0;
+};
+
+// Custom filters options
+// athlete
+dagfuncs.startsAFilter = (_, cellValue) => cellValue != null && cellValue.indexOf('A') === 0;
+dagfuncs.startsNFilter = (_, cellValue) => cellValue != null && cellValue.indexOf('N') === 0;
+dagfuncs.regExpFilter = ([filterValues], cellValue) => cellValue == null || new RegExp(filterValues, 'gi').test(cellValue);
+dagfuncs.betweenExclusiveTextFilter = ([fv1, fv2], cellValue) => {
+    return cellValue == null || (fv1.toLowerCase() < cellValue.toLowerCase() && fv2.toLowerCase() > cellValue.toLowerCase())
+};
+// age
+dagfuncs.evenNumbersFilter = (_, cellValue) => cellValue != null && cellValue % 2 === 0;
+dagfuncs.oddNumbersFilter = (_, cellValue) => cellValue != null && cellValue % 2 !== 0;
+dagfuncs.blanksFilter = (_, cellValue) => cellValue == null;
+dagfuncs.age5YearsAgoFilter = ([fv1], cellValue) => cellValue == null || cellValue - 5 === fv1;
+dagfuncs.betweenExclusiveNumberFilter = ([fv1, fv2], cellValue) => cellValue == null || (fv1 < cellValue && fv2 > cellValue);
+// date
+dagfuncs.equalsWithNullsFilter = ([filterValue], cellValue) => {
+    if (cellValue == null) return true;
+
+    const parts = cellValue.split('/');
+    const cellDate = new Date(
+        Number(parts[2]),
+        Number(parts[1] - 1),
+        Number(parts[0])
+    );
+    return cellDate.getTime() === filterValue.getTime();
+};
+dagfuncs.leapYearFilter = (_, cellValue) => {
+    if (cellValue == null) return true;
+
+    const year = Number(cellValue.split('/')[2]);
+    return year % 4 === 0 && year % 200 !== 0;
+};
+dagfuncs.betweenExclusiveDateFilter = ([fv1, fv2], cellValue) => {
+    if (cellValue == null) return true;
+
+    const parts = cellValue.split('/');
+    const cellDate = new Date(
+        Number(parts[2]),
+        Number(parts[1] - 1),
+        Number(parts[0])
+    );
+    return (
+        cellDate.getTime() > fv1.getTime() && cellDate.getTime() < fv2.getTime()
+    );
+};
+// dateComparator also used in floating filter page
+dagfuncs.dateComparator = (filterLocalDateAtMidnight, cellValue) => {
+    const dateAsString = cellValue;
+    if (dateAsString == null) return -1;
+    const dateParts = dateAsString.split('/');
+    const cellDate = new Date(
+        Number(dateParts[2]),
+        Number(dateParts[1]) - 1,
+        Number(dateParts[0])
+    );
+
+    if (filterLocalDateAtMidnight.getTime() === cellDate.getTime()) {
+        return 0;
+    }
+
+    if (cellDate < filterLocalDateAtMidnight) {
+        return -1;
+    }
+
+    if (cellDate > filterLocalDateAtMidnight) {
+        return 1;
+    }
+    return 0;
+};
+// country
+dagfuncs.notEqualNoNullsFilter = ([filterValue], cellValue) => {
+    if (cellValue == null) return false;
+
+    return cellValue.toLowerCase() !== filterValue.toLowerCase();
+};
+
+// END Custom filters
+
+dagfuncs.dataTypeDefinitions = {
+    dateString: {
+        baseDataType: 'dateString',
+        extendsDataType: 'dateString',
+        valueParser: (params) =>
+            params.newValue != null &&
+            params.newValue.match('\\d{2}/\\d{2}/\\d{4}')
+                ? params.newValue
+                : null,
+        valueFormatter: (params) => (params.value == null ? '' : params.value),
+        dataTypeMatcher: (value) =>
+            typeof value === 'string' && !!value.match('\\d{2}/\\d{2}/\\d{4}'),
+        dateParser: (value) => {
+            if (value == null || value === '') {
+                return undefined;
+            }
+            const dateParts = value.split('/');
+            return dateParts.length === 3
+                ? new Date(
+                    parseInt(dateParts[2]),
+                    parseInt(dateParts[1]) - 1,
+                    parseInt(dateParts[0])
+                )
+                : undefined;
+        },
+        dateFormatter: (value) => {
+            if (value == null) {
+                return undefined;
+            }
+            const date = String(value.getDate());
+            const month = String(value.getMonth() + 1);
+            return `${date.length === 1 ? '0' + date : date}/${
+                month.length === 1 ? '0' + month : month
+            }/${value.getFullYear()}`;
+        },
+    },
+};
+
+// used in page Quick Filter - example Overriding the Quick Filter Value
+dagfuncs.getMedalString = ({gold, silver, bronze}) => {
+    const goldStr = gold > 0 ? `Gold: ${gold} ` : '';
+    const silverStr = silver > 0 ? `Silver: ${silver} ` : '';
+    const bronzeStr = bronze > 0 ? `Bronze: ${bronze}` : '';
+    return goldStr + silverStr + bronzeStr;
+};
+
+// used in page Quick Filter - example Quick Filter Parser and Matcher
+dagfuncs.myQuickFilterParser = (quickFilter) => {
+    let quickFilterParts = [];
+    let lastSpaceIndex = -1;
+
+    const isQuote = (index) => quickFilter[index] === '"';
+    const getQuickFilterPart = (lastSpaceIndex, currentIndex) => {
+        const startsWithQuote = isQuote(lastSpaceIndex + 1);
+        const endsWithQuote = isQuote(currentIndex - 1);
+        const startIndex =
+            startsWithQuote && endsWithQuote
+                ? lastSpaceIndex + 2
+                : lastSpaceIndex + 1;
+        const endIndex =
+            startsWithQuote && endsWithQuote ? currentIndex - 1 : currentIndex;
+        return quickFilter.slice(startIndex, endIndex);
+    };
+
+    for (let i = 0; i < quickFilter.length; i++) {
+        const char = quickFilter[i];
+        if (char === ' ') {
+            if (!isQuote(lastSpaceIndex + 1) || isQuote(i - 1)) {
+                quickFilterParts.push(getQuickFilterPart(lastSpaceIndex, i));
+                lastSpaceIndex = i;
+            }
+        }
+    }
+    if (lastSpaceIndex !== quickFilter.length - 1) {
+        quickFilterParts.push(
+            getQuickFilterPart(lastSpaceIndex, quickFilter.length)
+        );
+    }
+    return quickFilterParts;
+};
+
+dagfuncs.myQuickFilterMatcher = (quickFilterParts, rowQuickFilterAggregateText) => {
+    return quickFilterParts.every(part => rowQuickFilterAggregateText.match(part));
+};
+
+// used in page External Filter
+dagfuncs.dateAfter2008 = (params) => {
+    const splitFields = params.data.date.split('/');
+
+    const date = new Date(
+        Number.parseInt(splitFields[2]),
+        Number.parseInt(splitFields[1]) - 1,
+        Number.parseInt(splitFields[0])
+    );
+
+    return date > new Date(2008, 1, 1)
+};
+
+// used in page Cell Rendering - example Many Renderers One Column
+dagfuncs.customCellRendererSelector = (params) => {
+    const moodDetails = {
+        component: dagcomponentfuncs.MoodRenderer,
+    };
+
+    const genderDetails = {
+        component: dagcomponentfuncs.GenderRenderer,
+        params: {color: '#66c2a5'},
+    };
+    if (params.data) {
+        if (params.data.type === 'gender') return genderDetails;
+        else if (params.data.type === 'mood') return moodDetails;
+    }
+    return undefined;
+};��D��      f$�f$�F�
+       m    O^partitionKey=%28https%2Cplotly.com%29,:https://dash.plotly.com/assets/dashAgGridFunctions.js?m=1713366137.0 strongly-framed 1 security-info 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 request-method GET response-head HTTP/1.1 200 OK
+Report-To: {"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713694607&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&s=PtI7jl6CR3eKKHW7AHOfq%2BmQInL%2FariDTyZ9ZxDyB8Q%3D"}]}
+Reporting-Endpoints: heroku-nel=https://nel.heroku.com/reports?ts=1713694607&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&s=PtI7jl6CR3eKKHW7AHOfq%2BmQInL%2FariDTyZ9ZxDyB8Q%3D
+Nel: {"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}
+Server: gunicorn
+Date: Sun, 21 Apr 2024 10:16:47 GMT
+Content-Disposition: inline; filename=dashAgGridFunctions.js
+Content-Type: application/javascript; charset=utf-8
+Content-Length: 31305
+Last-Modified: Wed, 17 Apr 2024 15:02:17 GMT
+Cache-Control: no-cache
+Etag: "1713366137.0-31305-1935347915"
+Via: 1.1 vegur
+ original-response-headers Report-To: {"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1713694607&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&s=PtI7jl6CR3eKKHW7AHOfq%2BmQInL%2FariDTyZ9ZxDyB8Q%3D"}]}
+Reporting-Endpoints: heroku-nel=https://nel.heroku.com/reports?ts=1713694607&sid=e11707d5-02a7-43ef-b45e-2cf4d2036f7d&s=PtI7jl6CR3eKKHW7AHOfq%2BmQInL%2FariDTyZ9ZxDyB8Q%3D
+Nel: {"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}
+Connection: keep-alive
+Server: gunicorn
+Date: Sun, 21 Apr 2024 10:16:47 GMT
+Content-Disposition: inline; filename=dashAgGridFunctions.js
+Content-Type: application/javascript; charset=utf-8
+Content-Length: 31305
+Last-Modified: Wed, 17 Apr 2024 15:02:17 GMT
+Cache-Control: no-cache
+Etag: "1713366137.0-31305-1935347915"
+Via: 1.1 vegur
+ ctid 2 uncompressed-len 0 net-response-time-onstart 2173 net-response-time-onstop 2176   zI

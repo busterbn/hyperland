@@ -1,0 +1,274 @@
+<!DOCTYPE html><html>
+<head>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109216528-1"></script>
+	<script type="text/javascript" src="//cdn.thisiswaldo.com/static/js/8199.js"></script>
+	<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-109216528-1');
+	</script>
+	<link rel="icon" type="image/x-icon" href="keyboard.png" /><title>Keyboard Checker | The best online keyboard tester</title>
+	<meta name="keywords" content="Keyboard, tester, checker, test, check, keys" />
+	<meta name="description" content="Test all keys on your keyboard with this easy-to-use website. Works with any keyboard and any browser. Simply press any key to test it." />
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="script.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Muli:300" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cabin:500" rel="stylesheet">
+
+</head>
+<body>
+<div class="toptop"><div class="top"><h1><span class="icon"></span><a class="title" href="http://www.keyboardchecker.com">Keyboard Checker <span id="small">the best online keyboard tester</span></a></h1>
+	</div></div>
+	<div class="h2bar">
+		<!-- 728x90/970x90/320x50 --><div id="waldo-tag-15021"></div>
+		<h2 class="broken">Simply <span class="keycounter bold">press any key</span> on your keyboard to test it - if it works it will turn <span class="green bold">green</span></h2></div>
+	<div class="bg">
+	<div class="container">
+		<div class="keyboard">
+			<div class="key Escape toprow"><p>esc</p></div>
+						<div class="key F1 toprow"><p>F1</p></div>
+						<div class="key F2 toprow" ><p>F2</p></div>
+						<div class="key F3 toprow"><p>F3</p></div>
+						<div class="key F4 toprow"><p>F4</p></div>
+						<div class="key F5 toprow"><p>F5</p></div>
+						<div class="key F6 toprow"><p>F6</p></div>
+						<div class="key F7 toprow"><p>F7</p></div>
+						<div class="key F8 toprow"><p>F8</p></div>
+						<div class="key F9 toprow"><p>F9</p></div>
+						<div class="key F10 toprow"><p>F10</p></div>
+						<div class="key F11 toprow"><p>F11</p></div>
+						<div class="key F12 toprow"><p>F12</p></div>
+						<div class="key nowork toprow"><p>&#9167</p></div>
+						<div class="key backquote tilde"><p>~<br />`</p></div>
+						<div class="key 1 bracket exclamation"><p>!<br /><br /><br /><br /><br />1</p></div>
+						<div class="key 2 bracket at"><p>@<br /><br /><br /><br /><br />2</p></div>
+						<div class="key 3 bracket hashtag"><p>#<br /><br /><br /><br /><br />3</p></div>
+						<div class="key 4 bracket dollarsign"><p>$<br /><br /><br /><br /><br />4</p></div>
+						<div class="key 5 bracket percent"><p>%<br /><br /><br /><br /><br />5</p></div>
+						<div class="key 6 bracket circumflex"><p>^<br /><br /><br /><br /><br />6</p></div>
+						<div class="key 7 bracket and"><p>&<br /><br /><br /><br /><br />7</p></div>
+						<div class="key 8 bracket asterisk"><p>*<br /><br /><br /><br /><br />8</p></div>
+						<div class="key 9 bracket roundbracketleft"><p>(<br /><br /><br /><br /><br />9</p></div>
+						<div class="key 0 bracket roundbracketright"><p>)<br /><br /><br /><br /><br />0</p></div>
+						<div class="key minus bracket Underscore"><p>-<br /><br /><br /><br />_</p></div>
+						<div class="key equal bracket plus"><p>+<br /><br /><br /><br /><br />=</p></div>
+						<div class="key Backspace del"><p><script type="text/javascript">document.write(backkey)</script></p></div>
+						<div class="key Tab"><p>tab</p></div>
+						<div class="key q Q"><p>Q</p></div>
+						<div class="key w W"><p>W</p></div>
+						<div class="key e E"><p>E</p></div>
+						<div class="key r R"><p>R</p></div>
+						<div class="key t T"><p>T</p></div>
+						<div class="key y Y"><p>Y</p></div>
+						<div class="key u U"><p>U</p></div>
+						<div class="key i I"><p>I</p></div>
+						<div class="key o O"><p>O</p></div>
+						<div class="key p P"><p>P</p></div>
+						<div class="key bracketleft bracket CurlyBracketL"><p>{<br /><br /><br /><br /><br />[</p></div>
+						<div class="key bracketright bracket CurlyBracketR"><p>}<br /><br /><br /><br /><br />]</p></div>
+						<div class="key backslash bracket stick"><p>|<br /><br /><br /><br /><br />\</p></div>
+						<div class="key CapsLock"><p>caps lock</p></div>
+						<div class="key a A"><p>A</p></div>
+						<div class="key s S"><p>S</p></div>
+						<div class="key d D"><p>D</p></div>
+						<div class="key f F"><p>F</p></div>
+						<div class="key g G"><p>G</p></div>
+						<div class="key h H"><p>H</p></div>
+						<div class="key j J"><p>J</p></div>
+						<div class="key k K"><p>K</p></div>
+						<div class="key l L"><p>L</p></div>
+						<div class="key semicolon bracket colon"><p>:<br /><br /><br /><br /><br />;</p></div>
+						<div class="key quote bracket doublequote"><p>"<br /><br /><br /><br /><br />'</p></div>
+						<div class="key Enter return"><p><script type="text/javascript">document.write(enterkey)</script></p></div>
+						<div class="key Shift shiftleft"><p>shift</p></div>
+						<div class="key z Z"><p>Z</p></div>
+						<div class="key x X"><p>X</p></div>
+						<div class="key c C"><p>C</p></div>
+						<div class="key v V"><p>V</p></div>
+						<div class="key b B"><p>B</p></div>
+						<div class="key n N"><p>N</p></div>
+						<div class="key m M"><p>M</p></div>
+						<div class="key comma bracket flexleft"><p><<br /><br /><br /><br /><br />,</p></div>
+						<div class="key punt bracket flexright"><p>><br /><br /><br /><br /><br />.</p></div>
+						<div class="key slash bracket question"><p>?<br /><br /><br /><br /><br />/</p></div>
+						<div class="key Shift shiftright"><p>shift</p></div>
+						<div class="key nowork bottomrow fn"><p>fn</p></div>
+						<div class ="key Control bottomrow"><p>control</p></div>
+						<div class ="key Alt bottomrow"><p><script type="text/javascript">document.write(altkey)</script></p></div>
+						<div class ="key Meta bottomrow cmd"><p><script type="text/javascript">document.write(startkey)</script></p></div>
+						<div class ="key Space"></div>
+						<div class ="key bottomrow Meta cmd"><p><script type="text/javascript">document.write(startkey)</script></p></div>
+						<div class ="key bottomrow Alt"><p><script type="text/javascript">document.write(altkey)</script></p></div>
+						<div class ="key ArrowLeft left">&#9664</div>
+						<div class ="key updown">
+							<div class="up ArrowUp">&#9650</div>
+							<div class="down ArrowDown">&#9660</div>
+						</div>
+						<div class="key left ArrowRight">&#9654</div>
+		</div>
+		<div id="numpadblock">
+						<div class="key toprow hidden"></div>
+						<div class="key toprow hidden"></div>
+						<div class="key toprow hidden"></div>
+						<div class="key PrintScreen extra"><p>print<br />screen</p></div>
+						<div class="key ScrollLock extra"><p>scroll<br />lock</p></div>
+						<div class="key Pause extra"><p>pause</p></div>
+						<div class="key Insert extra"><p>insert</p></div>
+						<div class="key Home extra"><p>home</p></div>
+						<div class="key PageUp extra"><p>page<br />up</p></div>
+						<div class="key Delete extra"><p>delete</p></div>
+						<div class="key End extra"><p>end</p></div>
+						<div class="key PageDown extra"><p>page<br />down</p></div>
+						<div class="key hidden"></div>
+						<div class="key Numlock extra"><p>num<br />lock</p></div>
+						<div class="key hidden"></div>
+						<div class="key bottomrow hidden"></div>
+						<div class="key bottomrow hidden"></div>
+						<div class="key bottomrow hidden"></div>
+		</div>
+	</div>
+</div>
+
+<div class="ctabar"><h2>Looking for a replacement keyboard? Scroll down or <a href="#link">click to see the keyboards we recommend </a></h2><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- KC Ad Responsive -->
+<!-- 728x90/970x90/970x250/320x50 -->
+<div id="waldo-tag-8200"></div>
+</div>
+
+
+		<div class="cardscontainer">
+      			<div class="cards">
+      				<div id="card">
+      					<h3>You can still press <span class="test infotext keycounter">86</span> keys</h3>
+      					<p class="list"><span class="iconlist"></span>Press all regular keys for an <span class="green">easter egg</span></p>
+      					<p class="list"><span class="iconlist"></span>There is no difference between left and right Shift, Control, Alt, and Command or Windows.</p>
+      				</div>
+
+      				<div id="card">
+      					<h3 class="h3lastkey">Last key pressed <span class="infotext keycounter lastkey">none</span></h3>
+      					<p class="list"><span class="iconlist"></span>Keys that work show up in <span class="green">green</span></p>
+						  <p class="list"><span class="iconlist"></span>Grey keys cannot be tested. </p>
+						  <p class="list"><span class="iconlist"></span>Press multiple keys at once to test for ghosting.</p>
+      				</div>
+
+      				<div id="card">
+      					<h3>Toggle <span class="infotext keycounter hidenumpad" onclick="toggle_visibility('numpadblock');">Hide Numpad</span></h3>
+      					<p class="list"><span class="iconlist"></span>Click the button above to toggle the special keys.</p>
+      					<p class="list"><span class="iconlist"></span>The Numpad numbers are shown on the normal bar when tested.</p>
+      				</div>
+
+					  <div id="card" class="split">
+						<h3>Who is this site for?</h3>
+						<p class="list"><span class="iconlist"></span>It is, of course, for anyone with a keyboard who wants to test how well it works</p>
+						<p class="list"><span class="iconlist"></span>However, there are some people this is particularly helpful for</p>
+						<p class="list"><span class="iconlist"></span>Namely, hardware managers -- people in charge of maintaining the stock of hardware, for examples in offices and schools</p>
+						<p class="list"><span class="iconlist"></span>If you have to test 25 keyboards, it is a big help to use a site like this.</p>
+						<p class="list"><span class="iconlist"></span>What may have been a job of a few hours can now be done in a matter of minutes.</p>
+					</div>
+					<div id="card" class="split">
+						<h3>When should you use this site?</h3>
+						<p class="list"><span class="iconlist"></span>If you want to check for ghosting.</p>
+						<p class="list"><span class="iconlist"></span>If you want to know how many keys your computer or laptop's keyboard can register at one time.</p>
+						<p class="list"><span class="iconlist"></span>If you want to know whether your F1 to F12 keys still work, because that can be tricky to find out since you cannot just type them in a document.</p>
+						<p class="list"><span class="iconlist"></span>Find out if the typing problems you're having are due to software or hardware.</p>
+						<p class="list" id="link"><span class="iconlist"></span>It doesn't matter whether you're using a Mac keyboard or a Windows keyboard, the keyboard test adapts automatically to your system.</p>
+					</div>
+
+
+      				<div id="card">
+      					<h3>Gaming Keyboard</h3>
+      					<p class="list"><span class="iconlist"></span><a target="_blank" href="https://amzn.to/3zvPec8">Corsair K55 RGB Pro Gaming Keyboard</a></p><a href="https://amzn.to/3zvPec8" target="_blank"><img class="img1 amazonimg" border="0" src="/corsair.jpg" /></a>
+      						<p class="list"><span class="iconlist"></span>Gaming keyboard for a very reasonable price.</p>
+      						<p class="list"><span class="iconlist"></span>Full-size keyboard with 6 configurable extra keys and media controls.</p>
+      						<p class="list"><span class="iconlist"></span>RGB lights can be configured specifically to your taste.</p>
+      						<p class="list"><span class="iconlist"></span>No need to install extra software; simply a solid gaming keyboard without having to spend a fortune.</p>
+      						
+      				</div>
+
+      				<div id="card" class="cardbackground">
+      					<h3 class="white">Looking for a <b>new keyboard?</b></h3>
+      					<p class="cardtext white">Check out the four keyboards we recommend.</p>
+      					<p class="cardtext white"><b>Honest recommendations:</b> We only chose keyboards we would actually buy ourselves.</p>
+      					<p class="cardtext white">For each category we picked the keyboard we thought is <b>best at a fair price.</b></p>
+      				</div>
+
+      				<div id="card">
+      					<h3>Apple Keyboard</h3>
+      						<p class="list"><span class="iconlist"></span><a target="_blank" href="https://amzn.to/3OUSg1y">Apple Magic Keyboard</a></p><a target="_blank"  href="https://amzn.to/3OUSg1y"><img class="img1 amazonimg" border="0" src="/apple-magic-keyboard.jpeg" /></a>
+      						<p class="list"><span class="iconlist"></span>Official Mac keyboard, updated recently.</p>
+      						<p class="list"><span class="iconlist"></span>Has all Apple function keys, is small and light but very robust.</p>
+      						<p class="list"><span class="iconlist"></span>Remarkable build quality, stylish but clearly built to last.</p>
+      						<p class="list"><span class="iconlist"></span> Also works well with iPads and iPhones, and Windows computers.</p>
+      						<p class="list"><span class="iconlist"></span>Apple recently released a <a target="_blank" href="https://amzn.to/3wkuCRF">new edition</a> with <i>touch ID</i>. This lets you log in with your fingerprint on the latest MacBook Pros and iMac.</p>
+      						
+      				</div>
+
+
+      				<div id="card">
+      					<h3>Keyboard + Mouse Combo</h3>
+      					<p class="list"><span class="iconlist"></span><a target="_blank" href="https://amzn.to/3U684zM">Logitech MK345 Wireless Keyboard + Mouse</a></p><a href="https://amzn.to/3U684zM" target="_blank"><img class="img1 amazonimg" border="0" src="/logitech-mk345.jpeg" /></a>
+      					<p class="list"><span class="iconlist"></span>Excellent all-round full-sized keyboard and wireless mouse for a great price.</p>
+      					<p class="list"><span class="iconlist"></span>Praised for being very comfortable, with an added palm-rest for ergonomics.</p>
+      					<p class="list"><span class="iconlist"></span>High quality, one reviewer said he purchased hundreds for his company, and maybe 2 failed.</p>
+      					<p class="list"><span class="iconlist"></span>Battery life of up to 3 years for the keyboard and 18 months for the mouse.</p>
+      				</div>
+
+      				<div id="card" class="cardbackground">
+      					<h3 class="white">About our <b>Keyboard Test</b></h3>
+      					<p class="cardtext white">We made this website simply to <b>help people test keyboards.</b></p>
+      					<p class="cardtext white">We tried to make it as user-friendly as possible.</p>
+      					<p class="cardtext white">If you have any feedback, let us now on Twitter via <b>@Keyboardchecker.</b></p>
+      					<p class="cardtext white">We also launched a <a href="https://machineatlas.com">woodworking database.</a></p>
+      				</div>
+
+      				<div id="card">
+      					<h3>Wireless Keyboard</h3>
+      					<p class="list"><span class="iconlist"></span><a target="_blank" href="https://amzn.to/3wwcrbX">Logitech MX Keys Wireless Keyboard</a><a href="https://amzn.to/3wwcrbX" target="_blank"><img  class="img1 amazonimg" border="0" src="/logitech-mx-keys.jpeg" /></a></p>
+      					<p class="list"><span class="iconlist"></span>Probably the best wireless keyboard on the market. Premium build quality and features.</p>
+      					<p class="list"><span class="iconlist"></span>Sturdy and solid build. Many reviewers comment how heavy and sturdy the keyboard feels.</p>
+      					<p class="list"><span class="iconlist"></span>Backlighting so you can see your keys even in a dimly lit room.</p>
+      					<p class="list"><span class="iconlist"></span>Copy and paste between devices with Logitech's special software. Works with Windows, Linux, and MacOS.</p>
+      				</div>      				
+
+      			</div>
+      		</div>
+      		<div class="amazon"><a href="http://keyboardchecker.com/privacy-policy.html">Privacy Policy</a> - Â© KeyboardChecker.com 2019 - We are a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for us to earn fees by linking to Amazon.com and affiliated sites.<br />
+      		Links automatically send you to either Amazon USA, Canada, UK, or DE, whichever is most relevant to you.
+      		</div>
+  		</div>
+	  </div>
+	 	 <!-- 728x90/320x50 Sticky Footer Ad -->
+		<div id="waldo-tag-8201"></div>
+
+  	<script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=d90c0e4f-c358-40e4-b94b-6ec4c51c3988"></script>
+</body>
+</html>r¾µôðº      f$ê|f$ê|FÍõf*‘N   N    O^partitionKey=%28https%2Ckeyboardchecker.com%29,:https://keyboardchecker.com/ strongly-framed 1 security-info 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 request-method GET response-head HTTP/2 200 
+content-type: text/html
+content-length: 16699
+date: Sat, 20 Apr 2024 10:18:24 GMT
+last-modified: Tue, 27 Feb 2024 11:38:15 GMT
+etag: "d280e23787f1f34e38c72d8a3604ee26"
+server: AmazonS3
+x-cache: Hit from cloudfront
+via: 1.1 14ac9ebde59a0d49d111dc4e4f5e846c.cloudfront.net (CloudFront)
+x-amz-cf-pop: CPH50-C2
+x-amz-cf-id: NhwZLpCkrwx7fsAZiuBg2QZo520PAGRoncUfvEvTfl2zzgiq_THI8Q==
+age: 86316
+X-Firefox-Spdy: h2
+ original-response-headers content-type: text/html
+content-length: 16699
+date: Sat, 20 Apr 2024 10:18:24 GMT
+last-modified: Tue, 27 Feb 2024 11:38:15 GMT
+etag: "d280e23787f1f34e38c72d8a3604ee26"
+server: AmazonS3
+x-cache: Hit from cloudfront
+via: 1.1 14ac9ebde59a0d49d111dc4e4f5e846c.cloudfront.net (CloudFront)
+x-amz-cf-pop: CPH50-C2
+x-amz-cf-id: NhwZLpCkrwx7fsAZiuBg2QZo520PAGRoncUfvEvTfl2zzgiq_THI8Q==
+age: 86316
+X-Firefox-Spdy: h2
+ ctid 1 uncompressed-len 0 net-response-time-onstart 619 net-response-time-onstop 649   A;

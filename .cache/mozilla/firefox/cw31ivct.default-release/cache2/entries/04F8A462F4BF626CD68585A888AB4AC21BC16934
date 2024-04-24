@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pointer acceleration &mdash; libinput 1.25.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Static device configuration via udev" href="device-configuration-via-udev.html" />
+    <link rel="prev" title="libinput test suite" href="test-suite.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            libinput
+          </a>
+              <div class="version">
+                1.25.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="what-is-libinput.html">What is libinput?</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="what-is-libinput.html#what-libinput-is">What libinput is</a></li>
+<li class="toctree-l2"><a class="reference internal" href="what-is-libinput.html#what-libinput-is-not">What libinput is not</a></li>
+<li class="toctree-l2"><a class="reference internal" href="what-is-libinput.html#libinput-and-wayland">libinput and Wayland</a></li>
+<li class="toctree-l2"><a class="reference internal" href="what-is-libinput.html#libinput-and-x-org">libinput and X.Org</a></li>
+<li class="toctree-l2"><a class="reference internal" href="what-is-libinput.html#device-types">Device types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="what-is-libinput.html#handled-device-types">Handled device types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="what-is-libinput.html#unhandled-device-types">Unhandled device types</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">libinput Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="button-debouncing.html">Button debouncing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clickpad-softbuttons.html">Clickpad software button behavior</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="clickpad-softbuttons.html#software-button-areas">Software button areas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clickpad-softbuttons.html#clickfinger-behavior">Clickfinger behavior</a></li>
+<li class="toctree-l3"><a class="reference internal" href="clickpad-softbuttons.html#special-clickpads">Special Clickpads</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gestures.html">Gestures</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gestures.html#lifetime-of-a-gesture">Lifetime of a gesture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gestures.html#pinch-gestures">Pinch gestures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gestures.html#swipe-gestures">Swipe gestures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gestures.html#hold-gestures">Hold gestures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gestures.html#touchscreen-gestures">Touchscreen gestures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gestures.html#gestures-with-enabled-software-buttons">Gestures with enabled software buttons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gestures.html#gestures-on-two-finger-touchpads">Gestures on two-finger touchpads</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="middle-button-emulation.html">Middle button emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="palm-detection.html">Palm detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="palm-detection.html#palm-detection-based-on-firmware-labelling">Palm detection based on firmware labelling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="palm-detection.html#palm-detection-based-on-pressure">Palm detection based on pressure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="palm-detection.html#palm-detection-based-on-touch-size">Palm detection based on touch size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="palm-detection.html#palm-exclusion-zones">Palm exclusion zones</a></li>
+<li class="toctree-l3"><a class="reference internal" href="palm-detection.html#palm-detection-during-trackpoint-use">Palm detection during trackpoint use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="palm-detection.html#disable-while-typing">Disable-while-typing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="palm-detection.html#disable-while-trackpointing">Disable-while-trackpointing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="palm-detection.html#stylus-touch-arbitration">Stylus-touch arbitration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="palm-detection.html#thumb-detection">Thumb detection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="touchpad-thumb-detection.html">Thumb detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="touchpad-thumb-detection.html#thumb-detection-based-on-pressure-or-size">Thumb detection based on pressure or size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touchpad-thumb-detection.html#thumb-detection-areas">Thumb detection areas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touchpad-thumb-detection.html#thumb-movement-based-on-speed">Thumb movement based on speed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touchpad-thumb-detection.html#thumb-detection-based-on-finger-positions">Thumb detection based on finger positions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="scrolling.html">Scrolling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scrolling.html#horizontal-scrolling">Horizontal scrolling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scrolling.html#two-finger-scrolling">Two-finger scrolling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scrolling.html#edge-scrolling">Edge scrolling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scrolling.html#on-button-scrolling">On-Button scrolling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scrolling.html#scroll-sources">Scroll sources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scrolling.html#natural-scrolling-vs-traditional-scrolling">Natural scrolling vs. traditional scrolling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="t440-support.html">Lenovo *40 series touchpad support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="t440-support.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t440-support.html#size-of-the-buttons">Size of the buttons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t440-support.html#button-behavior">Button behavior</a></li>
+<li class="toctree-l3"><a class="reference internal" href="t440-support.html#kernel-support">Kernel support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tapping.html">Tap-to-click behaviour</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tapping.html#tap-to-click-default-setting">Tap-to-click default setting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tapping.html#tap-and-drag">Tap-and-drag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tapping.html#constraints-while-tapping">Constraints while tapping</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tablet-support.html">Tablet support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tablet-support.html#pad-buttons-vs-tablet-tools">Pad buttons vs. tablet tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tablet-support.html#tool-tip-events-vs-tool-button-events">Tool tip events vs. tool button events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tablet-support.html#relative-motion-for-tablet-tools">Relative motion for tablet tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tablet-support.html#special-axes-on-tablet-tools">Special axes on tablet tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tablet-support.html#handling-of-proximity-events">Handling of proximity events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tablet-support.html#pressure-offset-on-worn-out-tools">Pressure offset on worn-out tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tablet-support.html#custom-tablet-tool-pressure-ranges">Custom tablet tool pressure ranges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tablet-support.html#tracking-unique-tools">Tracking unique tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tablet-support.html#vendor-specific-tablet-tool-types">Vendor-specific tablet tool types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tablet-support.html#out-of-bounds-motion-events">Out-of-bounds motion events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tablet-support.html#tablet-pad-button-numbers">Tablet pad button numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tablet-support.html#tablets-in-left-handed-mode">Tablets in left-handed mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tablet-support.html#tablet-pad-modes">Tablet pad modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tablet-support.html#tablet-touch-arbitration">Tablet touch arbitration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="switches.html">Switches</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="switches.html#lid-switch-handling">Lid switch handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="switches.html#tablet-mode-switch-handling">Tablet mode switch handling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="touchpad-pressure.html">Touchpad pressure-based touch detection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="touchpad-pressure.html#information-provided-by-the-kernel">Information provided by the kernel</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trackpoints.html">Trackpoints and Pointing Sticks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trackpoints.html#button-scrolling-on-trackpoints">Button scrolling on trackpoints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trackpoints.html#motion-range-on-trackpoints">Motion range on trackpoints</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration options</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#tap-to-click">Tap-to-click</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#send-events-mode">Send Events Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#pointer-acceleration">Pointer acceleration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#scrolling">Scrolling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#left-handed-mode">Left-handed Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#middle-button-emulation">Middle Button Emulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#click-method">Click method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#disable-while-typing">Disable while typing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#disable-while-trackpointing">Disable while trackpointing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#calibration">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#rotation">Rotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#tablet-tool-pressure-range">Tablet tool pressure range</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">libinput build instructions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="building.html#distribution-repositories-for-libinput-from-git">Distribution repositories for libinput from git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#building">Building libinput</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="building.html#verifying-the-install">Verifying the install</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building.html#reverting-to-the-system-provided-libinput-package">Reverting to the system-provided libinput package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building.html#selinux-adjustments">SELinux adjustments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#build-dependencies">Build dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="building.html#build-dependencies-per-distribution">Build dependencies per distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#conditional-builds">Conditional builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="building.html#building-against-libinput">Building against libinput</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="faqs.html">FAQs - Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#why-doesn-t-libinput-support">Why doesn’t libinput support …?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#my-mouse-moves-too-fast-even-at-the-slowest-setting">My mouse moves too fast, even at the slowest setting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#my-trackpoint-moves-too-slow-or-too-fast">My trackpoint moves too slow or too fast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#why-is-libinput-s-pointer-acceleration-worse-than-synaptics-evdev">Why is libinput’s pointer acceleration worse than synaptics/evdev</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#why-isn-t-touchpad-tap-to-click-enabled-by-default">Why isn’t touchpad tap-to-click enabled by default</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#why-does-my-touchpad-lose-track-of-touches">Why does my touchpad lose track of touches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#kinetic-scrolling-does-not-work">Kinetic scrolling does not work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#is-libinput-gpl-licensed">Is libinput GPL-licensed?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#where-is-the-configuration-stored">Where is the configuration stored?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#how-do-i-configure-my-device-on-wayland">How do I configure my device on Wayland?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#how-do-i-configure-my-device-on-x">How do I configure my device on X?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#can-you-add-a-configuration-option-for-feature">Can you add a configuration option for $FEATURE?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#why-don-t-synclient-and-syndaemon-work-with-libinput">Why don’t synclient and syndaemon work with libinput?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#does-libinput-support-non-wacom-tablets">Does libinput support non-Wacom tablets?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#my-tablet-doesn-t-work">My tablet doesn’t work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#how-to-apply-hwdb-changes">How to apply hwdb changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#what-causes-the-your-system-is-too-slow-warning">What causes the “your system is too slow” warning?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#is-libinput-required-for-wayland">Is libinput required for Wayland?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#can-i-write-a-program-to-make-libinput-do-foo">Can I write a program to make libinput do $FOO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faqs.html#can-i-configure-scroll-speed">Can I configure scroll speed?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reporting-bugs.html">Reporting bugs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reporting-bugs.html#obtaining-the-libinput-version">Obtaining the libinput version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporting-bugs.html#reproducing-bugs">Reproducing bugs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporting-bugs.html#libinput-configuration-settings">libinput configuration settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporting-bugs.html#reporting-touchpad-bugs">Reporting touchpad bugs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporting-bugs.html#reporting-mouse-bugs">Reporting mouse bugs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporting-bugs.html#reporting-keyboard-bugs">Reporting keyboard bugs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporting-bugs.html#reporting-trackpoint-bugs">Reporting trackpoint bugs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporting-bugs.html#all-other-devices">All other devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporting-bugs.html#udev-information-for-the-device">udev information for the device</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporting-bugs.html#recording-devices-with-evemu">Recording devices with evemu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reporting-bugs.html#my-bug-was-closed-as-fixed-what-now">My bug was closed as fixed, what now?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reporting-bugs.html#when-is-it-ok-to-re-open-a-fixed-bug">When is it ok to re-open a fixed bug?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reporting-bugs.html#gitlab-issue-tracker-tags">Gitlab issue tracker tags</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools.html">Helper tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#libinput-list-devices">libinput list-devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#libinput-list-kernel-devices">libinput list-kernel-devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#libinput-debug-events">libinput debug-events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#libinput-debug-gui">libinput debug-gui</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#libinput-record-and-libinput-replay">libinput record and libinput replay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#measuring-device-properties-with-libinput-measure">Measuring device properties with libinput measure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#analyzing-device-events-with-libinput-analyze">Analyzing device events with libinput analyze</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#listing-quirks-assigned-to-a-device">Listing quirks assigned to a device</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="device-quirks.html">Device quirks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="device-quirks.html#installing-temporary-local-device-quirks">Installing temporary local device quirks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="device-quirks.html#debugging-device-quirks">Debugging device quirks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="device-quirks.html#list-of-currently-available-device-quirks">List of currently available device quirks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="touchpad-jumping-cursors.html">Touchpad jumping cursor bugs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="touchpad-jumping-cursors.html#alpsps-2-alps-dualpoint-touchpad-jumping-to-4095-0">AlpsPS/2 ALPS DualPoint TouchPad jumping to 4095/0</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="touchpad-jitter.html">Touchpad jitter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="touchpad-jitter.html#overriding-the-hysteresis-margins">Overriding the hysteresis margins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touchpad-jitter.html#kernel-fuzz">Kernel fuzz</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="touchpad-pressure-debugging.html">Debugging touchpad pressure/size ranges</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="touchpad-pressure-debugging.html#debugging-touchpad-pressure-ranges">Debugging touchpad pressure ranges</a></li>
+<li class="toctree-l3"><a class="reference internal" href="touchpad-pressure-debugging.html#debugging-touch-size-ranges">Debugging touch size ranges</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trackpoint-configuration.html">Trackpoint configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="trackpoint-configuration.html#the-magic-trackpoint-multiplier">The magic trackpoint multiplier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="trackpoint-configuration.html#measuring-the-trackpoint-range">Measuring the trackpoint range</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tablet-debugging.html">Debugging tablet issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tablet-debugging.html#required-tablet-capabilities">Required tablet capabilities</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="incorrectly-enabled-hires.html">Incorrectly enabled high-resolution scroll</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="incorrectly-enabled-hires.html#detecting-and-fixing-the-issue">Detecting and fixing the issue</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="clickpad-with-right-button.html">Clickpads with a fake right button</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ignoring-devices.html">Ignoring specific devices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to libinput</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#code-of-conduct">Code of Conduct</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#contact">Contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#what-to-work-on">What to work on?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#getting-the-code">Getting the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#working-on-the-code">Working on the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#testing-the-code">Testing the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#submitting-code">Submitting Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#commit-history">Commit History</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#commit-messages">Commit Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#coding-style">Coding Style</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#tracking-patches-and-follow-ups">Tracking patches and follow-ups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#failed-pipeline-errors">Failed pipeline errors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#committed-gitlab-ci-yml-differs-from-generated-gitlab-ci-yml-please-verify">Committed gitlab-ci.yml differs from generated gitlab-ci.yml. Please verify</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#build-errors">Build errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#test-errors">Test errors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="development.html">Information for developers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="development.html#using-libinput-as-library">Using libinput as library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="absolute-axes.html">Absolute axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="absolute-coordinate-ranges.html">Coordinate ranges for absolute axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="normalization-of-relative-motion.html">Normalization of relative motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="seats.html">Seats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="timestamps.html">Timestamps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wheel-api.html">Wheel scrolling</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="development.html#hacking-on-libinput">Hacking on libinput</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="architecture.html">libinput’s internal architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test-suite.html">libinput test suite</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Pointer acceleration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="device-configuration-via-udev.html">Static device configuration via udev</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://wayland.freedesktop.org/libinput/doc/1.25.0/api/">API documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libinput</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="development.html">Information for developers</a></li>
+      <li class="breadcrumb-item active">Pointer acceleration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pointer-acceleration.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <blockquote>
+<div></div></blockquote>
+<section id="pointer-acceleration">
+<span id="id1"></span><h1>Pointer acceleration<a class="headerlink" href="#pointer-acceleration" title="Permalink to this heading"></a></h1>
+<p>libinput uses device-specific pointer acceleration methods, with the default
+being the <a class="reference internal" href="#ptraccel-linear"><span class="std std-ref">Linear pointer acceleration</span></a>. The methods share common properties, such as
+<a class="reference internal" href="#ptraccel-velocity"><span class="std std-ref">Velocity calculation</span></a>.</p>
+<p>This page explains the high-level concepts used in the code. It aims to
+provide an overview for developers and is not necessarily useful for
+users.</p>
+<section id="pointer-acceleration-profiles">
+<span id="ptraccel-profiles"></span><h2>Pointer acceleration profiles<a class="headerlink" href="#pointer-acceleration-profiles" title="Permalink to this heading"></a></h2>
+<p>The profile decides the general method of pointer acceleration.
+libinput currently supports three profiles: <strong>“adaptive”</strong>, <strong>“flat”</strong> and
+<strong>“custom”</strong>.</p>
+<ul class="simple">
+<li><p>The <strong>adaptive</strong> profile is the default profile for all devices and takes the
+current speed of the device into account when deciding on acceleration.</p></li>
+<li><p>The <strong>flat</strong> profile is simply a constant factor applied to all device deltas,
+regardless of the speed of motion (see <a class="reference internal" href="#ptraccel-profile-flat"><span class="std std-ref">The flat pointer acceleration profile</span></a>).</p></li>
+<li><p>The <strong>custom</strong> profile allows the user to define a custom acceleration
+function, giving full control over accelerations behavior at different speed
+(see <a class="reference internal" href="#ptraccel-profile-custom"><span class="std std-ref">The custom acceleration profile</span></a>).</p></li>
+</ul>
+<p>Most of this document describes the adaptive pointer acceleration.</p>
+</section>
+<section id="velocity-calculation">
+<span id="ptraccel-velocity"></span><h2>Velocity calculation<a class="headerlink" href="#velocity-calculation" title="Permalink to this heading"></a></h2>
+<p>The device’s speed of movement is measured across multiple input events
+through so-called “trackers”. Each event prepends a the tracker item, each
+subsequent tracker contains the delta of that item to the current position,
+the timestamp of the event that created it and the cardinal direction of the
+movement at the time. If a device moves into the same direction, the
+velocity is calculated across multiple trackers. For example, if a device
+moves steadily for 10 events to the left, the velocity is calculated across
+all 10 events.</p>
+<p>Whenever the movement changes direction or significantly changes speed, the
+velocity is calculated from the direction/speed change only. For example, if
+a device moves steadily for 8 events to the left and then 2 events to the
+right, the velocity is only that of the last 2 events.</p>
+<p>An extra time limit prevents events that are too old to factor into the
+velocity calculation. For example, if a device moves steadily for 5 events
+to the left, then pauses, then moves again for 5 events to the left, only
+the last 5 events are used for velocity calculation.</p>
+<p>The velocity is then used to calculate the acceleration factor</p>
+</section>
+<section id="acceleration-factor">
+<span id="ptraccel-factor"></span><h2>Acceleration factor<a class="headerlink" href="#acceleration-factor" title="Permalink to this heading"></a></h2>
+<p>The acceleration factor is the final outcome of the pointer acceleration
+calculations. It is a unitless factor that is applied to the current delta,
+a factor of 2 doubles the delta (i.e. speeds up the movement), a factor of
+less than 1 reduces the delta (i.e. slows the movement).</p>
+<p>Any factor less than 1 requires the user to move the device further to move
+the visible pointer. This is called deceleration and enables high precision
+target selection through subpixel movements. libinput’s current maximum
+deceleration factor is 0.3 (i.e. slow down to 30% of the pointer speed).</p>
+<p>A factor higher than 1 moves the pointer further than the physical device
+moves. This is acceleration and allows a user to cross the screen quickly
+but effectively skips pixels. libinput’s current maximum acceleration factor
+is 3.5.</p>
+</section>
+<section id="linear-pointer-acceleration">
+<span id="ptraccel-linear"></span><h2>Linear pointer acceleration<a class="headerlink" href="#linear-pointer-acceleration" title="Permalink to this heading"></a></h2>
+<p>The linear pointer acceleration method is the default for most pointer
+devices. It provides deceleration at very slow movements, a 1:1 mapping for
+regular movements and a linear increase to the maximum acceleration factor
+for fast movements.</p>
+<p>Linear pointer acceleration applies to devices with above 1000dpi resolution
+and after <a class="reference internal" href="normalization-of-relative-motion.html#motion-normalization"><span class="std std-ref">Normalization of relative motion</span></a> is applied.</p>
+<figure class="align-center" id="id2">
+<img alt="_images/ptraccel-linear.svg" src="_images/ptraccel-linear.svg" /><figcaption>
+<p><span class="caption-text">Linear pointer acceleration</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The image above shows the linear pointer acceleration settings at various
+speeds. The line for 0.0 is the default acceleration curve, speed settings
+above 0.0 accelerate sooner, faster and to a higher maximum acceleration.
+Speed settings below 0 delay when acceleration kicks in, how soon the
+maximum acceleration is reached and the maximum acceleration factor.</p>
+<p>Extremely low speed settings provide no acceleration and additionally
+decelerate all movement by a constant factor.</p>
+</section>
+<section id="pointer-acceleration-for-low-dpi-devices">
+<span id="ptraccel-low-dpi"></span><h2>Pointer acceleration for low-dpi devices<a class="headerlink" href="#pointer-acceleration-for-low-dpi-devices" title="Permalink to this heading"></a></h2>
+<p>Low-dpi devices are those with a physical resolution of less than 1000 dots
+per inch (dpi). The pointer acceleration is adjusted to provide roughly the
+same feel for all devices at normal to high speeds. At slow speeds, the
+pointer acceleration works on device-units rather than normalized
+coordinates (see <a class="reference internal" href="normalization-of-relative-motion.html#motion-normalization"><span class="std std-ref">Normalization of relative motion</span></a>).</p>
+<figure class="align-center" id="id3">
+<img alt="_images/ptraccel-low-dpi.svg" src="_images/ptraccel-low-dpi.svg" /><figcaption>
+<p><span class="caption-text">Pointer acceleration for low-dpi devices</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The image above shows the default pointer acceleration curve for a speed of
+0.0 at different DPI settings. A device with low DPI has the acceleration
+applied sooner and with a stronger acceleration factor.</p>
+</section>
+<section id="pointer-acceleration-on-touchpads">
+<span id="ptraccel-touchpad"></span><h2>Pointer acceleration on touchpads<a class="headerlink" href="#pointer-acceleration-on-touchpads" title="Permalink to this heading"></a></h2>
+<p>Touchpad pointer acceleration uses the same approach as the
+<a class="reference internal" href="#ptraccel-linear"><span class="std std-ref">Linear pointer acceleration</span></a> profile, with a constant deceleration factor applied. The
+user expectation of how much a pointer should move in response to finger
+movement is different to that of a mouse device, hence the constant
+deceleration factor.</p>
+<figure class="align-center" id="id4">
+<img alt="_images/ptraccel-touchpad.svg" src="_images/ptraccel-touchpad.svg" /><figcaption>
+<p><span class="caption-text">Pointer acceleration curve for touchpads</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The image above shows the touchpad acceleration profile in comparison to the
+<a class="reference internal" href="#ptraccel-linear"><span class="std std-ref">Linear pointer acceleration</span></a>. The shape of the curve is identical but vertically squashed.</p>
+</section>
+<section id="pointer-acceleration-on-trackpoints">
+<span id="ptraccel-trackpoint"></span><h2>Pointer acceleration on trackpoints<a class="headerlink" href="#pointer-acceleration-on-trackpoints" title="Permalink to this heading"></a></h2>
+<p>The main difference between trackpoint hardware and mice or touchpads is
+that trackpoint speed is a function of pressure rather than moving speed.
+But trackpoint hardware is quite varied in how it reacts to user pressure
+and unlike other devices it cannot easily be normalized for physical
+properties. Measuring pressure objectively across a variety of hardware is
+nontrivial. See <a class="reference internal" href="trackpoints.html#trackpoints"><span class="std std-ref">Trackpoints and Pointing Sticks</span></a> for more details.</p>
+<p>The deltas for trackpoints are converted units/ms but there is no common
+physical reference point for a unit. Thus, the same pressure on different
+trackpoints will generate different speeds and thus different acceleration
+behaviors. Additionally, some trackpoints provide the ability to adjust the
+sensitivity in hardware by modifying a sysfs file on the serio node. A
+higher sensitivity results in higher deltas, thus changing the definition of
+what is a unit again.</p>
+<p>libinput attempts to normalize unit data to the best of its abilities, see
+<a class="reference internal" href="trackpoint-configuration.html#trackpoint-multiplier"><span class="std std-ref">The magic trackpoint multiplier</span></a>. Beyond this, it is not possible to have
+consistent behavior across different touchpad devices.</p>
+<figure class="align-center" id="id5">
+<img alt="_images/ptraccel-trackpoint.svg" src="_images/ptraccel-trackpoint.svg" /><figcaption>
+<p><span class="caption-text">Pointer acceleration curves for trackpoints</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The image above shows the trackpoint acceleration profile for the speed in
+units/ms.</p>
+</section>
+<section id="the-flat-pointer-acceleration-profile">
+<span id="ptraccel-profile-flat"></span><h2>The flat pointer acceleration profile<a class="headerlink" href="#the-flat-pointer-acceleration-profile" title="Permalink to this heading"></a></h2>
+<p>In a flat profile, the acceleration factor is constant regardless of the
+velocity of the pointer and each delta (dx, dy) results in an accelerated delta
+(dx * factor, dy * factor). This provides 1:1 movement between the device
+and the pointer on-screen.</p>
+</section>
+<section id="pointer-acceleration-on-tablets">
+<span id="ptraccel-tablet"></span><h2>Pointer acceleration on tablets<a class="headerlink" href="#pointer-acceleration-on-tablets" title="Permalink to this heading"></a></h2>
+<p>Pointer acceleration for relative motion on tablet devices is a flat
+acceleration, with the speed setting slowing down or speeding up the pointer
+motion by a constant factor. Tablets do not allow for switchable profiles.</p>
+</section>
+<section id="the-custom-acceleration-profile">
+<span id="ptraccel-profile-custom"></span><h2>The custom acceleration profile<a class="headerlink" href="#the-custom-acceleration-profile" title="Permalink to this heading"></a></h2>
+<p>libinput supports a user-defined custom acceleration profile, which can be
+adjusted for different movement types supported by a device. Movement types
+include pointer movement, scrolling, etc. but the set of supported
+movement types depends on the device.</p>
+<p>The custom pointer acceleration profile gives users full control over the
+acceleration behavior at different speeds. libinput exposes
+an acceleration function <code class="docutils literal notranslate"><span class="pre">f(x)</span></code> where the x axis is the device speed in
+device units per millisecond and the y axis is the pointer speed. By
+supplying the y axis values for this function, users can control the
+behavior of the device.</p>
+<p>The user should take into account the native device dpi and screen dpi in
+order to achieve the desired behavior/feel.</p>
+<p>The custom acceleration function is defined using <code class="docutils literal notranslate"><span class="pre">n</span></code> points which are spaced
+uniformly along the x axis, starting from 0 and continuing in constant steps.
+At least two points must be defined and there is an implementation-defined
+limit on how many points may be added.</p>
+<p>Thus the points defining the custom function are:
+<code class="docutils literal notranslate"><span class="pre">(0</span> <span class="pre">*</span> <span class="pre">step,</span> <span class="pre">f[0]),</span> <span class="pre">(1</span> <span class="pre">*</span> <span class="pre">step,</span> <span class="pre">f[1]),</span> <span class="pre">...,</span> <span class="pre">((n-1)</span> <span class="pre">*</span> <span class="pre">step,</span> <span class="pre">f[n-1])</span></code>
+where <code class="docutils literal notranslate"><span class="pre">f</span></code> is a list of <code class="docutils literal notranslate"><span class="pre">n</span></code> values defining the output velocity for each
+input velocity.
+The acceleration factor is defined by the ratio of the output velocity to the
+input velocity.
+When a velocity value does not lie exactly on those points, a linear
+interpolation of the two closest points will be calculated.
+When a velocity value is greater than the max point defined, a linear
+extrapolation of the two biggest points will be calculated.</p>
+<p>the calculation made by libinput:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>input_delta = device delta units
+delta_time = time in ms since last input_delta
+input_speed = hypot(input_delta) / delta_time
+output_speed = user_custom_function(input_speed)
+acceleration_factor = output_speed / input_speed
+output_delta = input_delta * acceleration_factor
+</pre></div>
+</div>
+<p>An example is the curve of <code class="docutils literal notranslate"><span class="pre">0.0,</span> <span class="pre">1.0</span></code> with a step of <code class="docutils literal notranslate"><span class="pre">1.0</span></code>. This curve
+is the equivalent of the flat acceleration profile with any input speed <code class="docutils literal notranslate"><span class="pre">N</span></code>
+mapped to the same pointer speed <code class="docutils literal notranslate"><span class="pre">N</span></code>. The curve <code class="docutils literal notranslate"><span class="pre">1.0,</span> <span class="pre">1.0</span></code> neutralizes
+any input speed differences and results in a fixed pointer speed.</p>
+<p>Another example is the custom acceleration function <code class="docutils literal notranslate"><span class="pre">x**2</span></code>,
+sampling the function at <code class="docutils literal notranslate"><span class="pre">4</span></code> points up to
+a maximum input speed of <code class="docutils literal notranslate"><span class="pre">9</span></code> will give us a custom function with
+a step of <code class="docutils literal notranslate"><span class="pre">3</span></code> and points <code class="docutils literal notranslate"><span class="pre">[0.0,</span> <span class="pre">9.0,</span> <span class="pre">36.0,</span> <span class="pre">81.0]</span></code>:</p>
+<figure class="align-center">
+<img alt="_images/ptraccel-custom.svg" src="_images/ptraccel-custom.svg" /></figure>
+<p>More sampled points can be added to improve the accuracy of the user custom
+function.</p>
+<p>Supported Movement types:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Movement type</p></th>
+<th class="head"><p>Uses</p></th>
+<th class="head"><p>supported by</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Fallback</p></td>
+<td><p>Catch-all default movement type</p></td>
+<td><p>All devices</p></td>
+</tr>
+<tr class="row-odd"><td><p>Motion</p></td>
+<td><p>Used for pointer motion</p></td>
+<td><p>All devices</p></td>
+</tr>
+<tr class="row-even"><td><p>Scroll</p></td>
+<td><p>Used for scroll movement</p></td>
+<td><p>Mouse, Touchpad</p></td>
+</tr>
+</tbody>
+</table>
+<p>If a user does not provide the fallback custom acceleration function, a
+flat acceleration function is used, i.e. no acceleration.</p>
+<p>The fallback acceleration may be used for different types of movements, it is
+strongly recommended that this acceleration function is a constant function.</p>
+<p>For example, a touchpad has multiple movement types: pointer
+movement, scroll movement, zoom movement (pinch), etc. As there is no separate
+movement type for zoom yet, zoom movement is accelerated using the Fallback
+acceleration function. Pointer movement is accelerated using the Motion
+acceleration function, and Scroll movement is accelerated using the Scroll
+acceleration function. If no Motion/Scroll acceleration function is set, the
+Fallback acceleration function is used.</p>
+<p>When using custom acceleration profile, any calls to set the speed have no
+effect on the behavior of the custom acceleration function, but any future calls to
+get the speed will reflect the requested speed setting.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="test-suite.html" class="btn btn-neutral float-left" title="libinput test suite" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="device-configuration-via-udev.html" class="btn btn-neutral float-right" title="Static device configuration via udev" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019, the libinput authors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>�U��H?      f#�f#�F�:9f#צ   �    O^partitionKey=%28https%2Cwayland.freedesktop.org%29,:https://wayland.freedesktop.org/libinput/doc/latest/pointer-acceleration.html necko:classified 1 strongly-framed 1 security-info FnhllAKWRHGAlo+ESXykKAAAAAAAAAAAwAAAAAAAAEaphjojH6pBabDSgSnsfLHeAAAAAgAAAAAAAAAAAAAAAAAAAAEAOQFmCjImkVxP+7sgiYWmMt8FvcOXmlQiTNWFiWlrbpbqgwAAAAAAAAgDMIIH/zCCBuegAwIBAgISA8ASwfCCArCrFXeO3uzoR9BYMA0GCSqGSIb3DQEBCwUAMDIxCzAJBgNVBAYTAlVTMRYwFAYDVQQKEw1MZXQncyBFbmNyeXB0MQswCQYDVQQDEwJSMzAeFw0yNDAzMjMxMTQ2NDZaFw0yNDA2MjExMTQ2NDVaMCAxHjAcBgNVBAMTFXBhZ2VzLmZyZWVkZXNrdG9wLm9yZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMCX5cIXaZJL2Xbnaix5fV6Uygx9nZCbVmMvulzn84FSJhcOMs3YbRAU7xWNPSGTN3ahf/T3ZD3MqLCM8Xxbb60vfcEC+AkaqojgUkuX9yyleVMV5boZCaF0bWT5GaLCGRAYo14nwQNK0i5chD5FIa/29VkWWAmZ4lKRErx7TRO8J1juikwtZTV7kHC/ITjL0Dk7Xjv2YHY3lSwWQOxhiJImlk+eA+fnkZEbrQjkAkYdgOu/QgvmDoAZmIcJc3+aKBQ2topR8ZViSXLjAfGCsBlMA8cUguMxDlsJPVqUL1jPAdABK+3TCmiPmD97wqG8Fb+V6535WHzsXHT2Yg152ZUCAwEAAaOCBR8wggUbMA4GA1UdDwEB/wQEAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwDAYDVR0TAQH/BAIwADAdBgNVHQ4EFgQUNUiOnFUj0wIGxWEJSdZndGxt66kwHwYDVR0jBBgwFoAUFC6zF7dYVsuuUAlA5h+vnYsUwsYwVQYIKwYBBQUHAQEESTBHMCEGCCsGAQUFBzABhhVodHRwOi8vcjMuby5sZW5jci5vcmcwIgYIKwYBBQUHMAKGFmh0dHA6Ly9yMy5pLmxlbmNyLm9yZy8wggMnBgNVHREEggMeMIIDGoIXKi5wYWdlcy5mcmVlZGVza3RvcC5vcmeCD2RvY3MubWVzYTNkLm9yZ4IRZG9jcy5waXBld2lyZS5vcmeCFmZwcmludC5mcmVlZGVza3RvcC5vcmeCHGdlb2NsdWUtdGVzdC5mcmVlZGVza3RvcC5vcmeCG2xpYmJzZC10ZXN0LmZyZWVkZXNrdG9wLm9yZ4IZbGliY2FjYXJkLmZyZWVkZXNrdG9wLm9yZ4IXbGlibmljZS5mcmVlZGVza3RvcC5vcmeCGmxpYm9wZW5yYXcuZnJlZWRlc2t0b3Aub3JnghRtZXNhLmZyZWVkZXNrdG9wLm9yZ4IKbWVzYTNkLm9yZ4IQbW9kZW1tYW5hZ2VyLm9yZ4IWbW9uYWRvLmZyZWVkZXNrdG9wLm9yZ4ISbmV0d29ya21hbmFnZXIuZGV2ghdub3V2ZWF1LmZyZWVkZXNrdG9wLm9yZ4IacGFnZXMtdGVzdC5mcmVlZGVza3RvcC5vcmeCFXBhZ2VzLmZyZWVkZXNrdG9wLm9yZ4IXcGFnZXMuc3luY2V2b2x1dGlvbi5vcmeCGHBhbmZyb3N0LmZyZWVkZXNrdG9wLm9yZ4IWcGlnbGl0LmZyZWVkZXNrdG9wLm9yZ4IMcGlwZXdpcmUub3JnghZwbGFuZXQuZnJlZWRlc2t0b3Aub3Jnghdwb3BwbGVyLmZyZWVkZXNrdG9wLm9yZ4IWcmFyaWFuLmZyZWVkZXNrdG9wLm9yZ4Iec3BlY2lmaWNhdGlvbnMuZnJlZWRlc2t0b3Aub3JnghFzeW5jZXZvbHV0aW9uLm9yZ4IWdXBvd2VyLmZyZWVkZXNrdG9wLm9yZ4IWd2FmZmxlLmZyZWVkZXNrdG9wLm9yZ4IXd2F5bGFuZC5mcmVlZGVza3RvcC5vcmeCDnd3dy5tZXNhM2Qub3JnghZ3d3cubmV0d29ya21hbmFnZXIuZGV2ghB3d3cucGlwZXdpcmUub3Jnghl4cmRlc2t0b3AuZnJlZWRlc2t0b3Aub3Jnghl6ZWl0Z2Vpc3QuZnJlZWRlc2t0b3Aub3JnMBMGA1UdIAQMMAowCAYGZ4EMAQIBMIIBAwYKKwYBBAHWeQIEAgSB9ASB8QDvAHUAouK/1h7eLy8HoNZObTen3GVDsMa1LqLat4r4mm31F9gAAAGOa1lvAQAABAMARjBEAiBkeqWEMK9z+EmAP4Z18abX1lPzVzhD/a2h9HrNAXoUnQIgGIVtb3rwsD3AMpIohBxNy1cXp2MUEksSXr3dKAasv1wAdgB2/4g/Crb7lVHCYcz1h7o0tKTNuyncaEIKn+ZnTFo6dAAAAY5rWW8/AAAEAwBHMEUCIDgmCcz+2m92sbRRzmPa+HRAAFhxf9BbeiHWKI7kAifEAiEAlmcZw2/fBQEzx2EjUu2hcEB1TKme/mGd0m163+wlsQcwDQYJKoZIhvcNAQELBQADggEBAKLm/wURVgt2/XMscHPATM+flWOPORvisysut89WkNAmVWnhQiTUmUgydcF2xAP16A4CackwmENizhbIMSA18rRKFiOEiAQYLRLpGaMX3Mf9ckR0i0miyHXG/2tJCdWBLmvatkte4bLHEF89R900PjPHvJclLxSO8kzWy4iRwcl47Kwx/M5uP5G8g4eKQSxACCVL+BCFKZ5dl/4XFY2UvvrQXTEKtxzdQIevWFPgPOyZ5YLkkWKFeCcISp7bGerWqbjH1JOshtA2givRsGZNle7XlsmCzGcjVd9MfHLvIZJYZT796VmjlPvxhsJpAHNXdbVvihA/VUlVevt+tCtqlWgTAgAEAAAAAAABAQAAAAAAAAZ4MjU1MTkAAAAOUlNBLVBTUy1TSEEyNTYAA2YKMiaRXE/7uyCJhaYy3wW9w5eaVCJM1YWJaWtuluqDAAAAAAAACAMwggf/MIIG56ADAgECAhIDwBLB8IICsKsVd47e7OhH0FgwDQYJKoZIhvcNAQELBQAwMjELMAkGA1UEBhMCVVMxFjAUBgNVBAoTDUxldCdzIEVuY3J5cHQxCzAJBgNVBAMTAlIzMB4XDTI0MDMyMzExNDY0NloXDTI0MDYyMTExNDY0NVowIDEeMBwGA1UEAxMVcGFnZXMuZnJlZWRlc2t0b3Aub3JnMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwJflwhdpkkvZdudqLHl9XpTKDH2dkJtWYy+6XOfzgVImFw4yzdhtEBTvFY09IZM3dqF/9PdkPcyosIzxfFtvrS99wQL4CRqqiOBSS5f3LKV5UxXluhkJoXRtZPkZosIZEBijXifBA0rSLlyEPkUhr/b1WRZYCZniUpESvHtNE7wnWO6KTC1lNXuQcL8hOMvQOTteO/ZgdjeVLBZA7GGIkiaWT54D5+eRkRutCOQCRh2A679CC+YOgBmYhwlzf5ooFDa2ilHxlWJJcuMB8YKwGUwDxxSC4zEOWwk9WpQvWM8B0AEr7dMKaI+YP3vCobwVv5XrnflYfOxcdPZiDXnZlQIDAQABo4IFHzCCBRswDgYDVR0PAQH/BAQDAgWgMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjAMBgNVHRMBAf8EAjAAMB0GA1UdDgQWBBQ1SI6cVSPTAgbFYQlJ1md0bG3rqTAfBgNVHSMEGDAWgBQULrMXt1hWy65QCUDmH6+dixTCxjBVBggrBgEFBQcBAQRJMEcwIQYIKwYBBQUHMAGGFWh0dHA6Ly9yMy5vLmxlbmNyLm9yZzAiBggrBgEFBQcwAoYWaHR0cDovL3IzLmkubGVuY3Iub3JnLzCCAycGA1UdEQSCAx4wggMaghcqLnBhZ2VzLmZyZWVkZXNrdG9wLm9yZ4IPZG9jcy5tZXNhM2Qub3JnghFkb2NzLnBpcGV3aXJlLm9yZ4IWZnByaW50LmZyZWVkZXNrdG9wLm9yZ4IcZ2VvY2x1ZS10ZXN0LmZyZWVkZXNrdG9wLm9yZ4IbbGliYnNkLXRlc3QuZnJlZWRlc2t0b3Aub3JnghlsaWJjYWNhcmQuZnJlZWRlc2t0b3Aub3JnghdsaWJuaWNlLmZyZWVkZXNrdG9wLm9yZ4IabGlib3BlbnJhdy5mcmVlZGVza3RvcC5vcmeCFG1lc2EuZnJlZWRlc2t0b3Aub3JnggptZXNhM2Qub3JnghBtb2RlbW1hbmFnZXIub3JnghZtb25hZG8uZnJlZWRlc2t0b3Aub3JnghJuZXR3b3JrbWFuYWdlci5kZXaCF25vdXZlYXUuZnJlZWRlc2t0b3Aub3JnghpwYWdlcy10ZXN0LmZyZWVkZXNrdG9wLm9yZ4IVcGFnZXMuZnJlZWRlc2t0b3Aub3JnghdwYWdlcy5zeW5jZXZvbHV0aW9uLm9yZ4IYcGFuZnJvc3QuZnJlZWRlc2t0b3Aub3JnghZwaWdsaXQuZnJlZWRlc2t0b3Aub3JnggxwaXBld2lyZS5vcmeCFnBsYW5ldC5mcmVlZGVza3RvcC5vcmeCF3BvcHBsZXIuZnJlZWRlc2t0b3Aub3JnghZyYXJpYW4uZnJlZWRlc2t0b3Aub3Jngh5zcGVjaWZpY2F0aW9ucy5mcmVlZGVza3RvcC5vcmeCEXN5bmNldm9sdXRpb24ub3JnghZ1cG93ZXIuZnJlZWRlc2t0b3Aub3JnghZ3YWZmbGUuZnJlZWRlc2t0b3Aub3Jn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 request-method GET response-head HTTP/2 200 
+date: Sat, 20 Apr 2024 14:46:38 GMT
+content-type: text/html; charset=utf-8
+content-length: 49024
+cache-control: max-age=600
+etag: "d6e381b925ae7e1ee5048426f447df47ad57afbb1dc5d2f1f888b657594758fe"
+expires: Sat, 20 Apr 2024 14:56:38 UTC
+last-modified: Wed, 17 Apr 2024 15:07:26 GMT
+vary: Origin
+strict-transport-security: max-age=15724800; includeSubDomains
+X-Firefox-Spdy: h2
+ original-response-headers date: Sat, 20 Apr 2024 14:46:38 GMT
+content-type: text/html; charset=utf-8
+content-length: 49024
+cache-control: max-age=600
+etag: "d6e381b925ae7e1ee5048426f447df47ad57afbb1dc5d2f1f888b657594758fe"
+expires: Sat, 20 Apr 2024 14:56:38 UTC
+last-modified: Wed, 17 Apr 2024 15:07:26 GMT
+vary: Origin
+strict-transport-security: max-age=15724800; includeSubDomains
+X-Firefox-Spdy: h2
+ ctid 1 uncompressed-len 0 net-response-time-onstart 387 net-response-time-onstop 565   ��
